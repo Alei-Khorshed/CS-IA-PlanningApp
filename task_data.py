@@ -28,7 +28,7 @@ with st.form("data_form", clear_on_submit=True):
     subject = st.selectbox("Subject Name:", options = subject_titles)
     selected_subject = df_subject.loc[df_subject['title'] == subject, 'subject_id'].iloc[0]
     selected_id = df_subject.loc[df_subject['title'] == subject_titles, 'subject_id'].iloc[0]
-    st.write(selected_id)
+    st.caption(f"Selected Subject ID: {selected_id}")
         
 
     title = st.text_input("Task Title", key="txtTitle")
