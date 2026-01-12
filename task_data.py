@@ -38,7 +38,7 @@ with st.form("data_form", clear_on_submit=True):
 
     if submit:
 
-        st.w(selected_subject)
+        st.write(selected_subject)
         selected_id = df_subject.loc[df_subject['title'] == subject_titles, 'subject_id'].iloc[0]
         st.write(selected_id)
 
