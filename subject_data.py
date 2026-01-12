@@ -47,12 +47,7 @@ with st.form("data_form", clear_on_submit=True):
 
         st.session_state.first_load = "NO"
 
-        # Read the entire table into a DataFrame
-        #df = pd.read_sql("SELECT * FROM Subject", conn)
-        #st.write(df)
-
-
-        
+    
 
         conn.close()
         st.rerun()
