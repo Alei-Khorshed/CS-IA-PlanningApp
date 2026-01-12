@@ -5,7 +5,10 @@ import streamlit as st
 st.title("Alei Khorshed - Planning App")
 st.write("My IBDP Computer Science - IA")
 
-st.markdown("# Home 🏠")
+#st.markdown("# Home 🏠")
 st.sidebar.markdown("# Home 🏠")
 
 
+
+if st.button("Add New Subject"):
+    st.switch_page(subject_data.py) 
