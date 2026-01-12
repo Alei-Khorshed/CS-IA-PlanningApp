@@ -25,7 +25,7 @@ with st.form("data_form", clear_on_submit=True):
     submit = st.form_submit_button("Add Subject")
 
 
-    if st.session_state.first_load == "YES"
+    if st.session_state.first_load == "YES":
         # Read the entire table into a DataFrame
         df = pd.read_sql("SELECT * FROM Subject", conn)
         st.write(df)
