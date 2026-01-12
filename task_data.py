@@ -27,8 +27,6 @@ subject_titles = df_subject['title'].tolist()
 with st.form("data_form", clear_on_submit=True):
     subject = st.selectbox("Subject Name:", options = subject_titles)
     selected_subject = df_subject.loc[df_subject['title'] == subject, 'subject_id'].iloc[0]
-    selected_id = df_subject.loc[df_subject['title'] == subject_titles, 'subject_id'].iloc[0]
-    st.caption(f"Selected Subject ID: {selected_id}")
         
 
     title = st.text_input("Task Title", key="txtTitle")
@@ -39,6 +37,11 @@ with st.form("data_form", clear_on_submit=True):
 
 
     if submit:
+
+        selected_id = df_subject.loc[df_subject['title'] == subject_titles, 'subject_id'].iloc[0]
+        st.caption(f"Selected Subject ID: {selected_id}")
+
+
         # Create a DataFrame for the new record
         #data_record = [{"subject_id": 0, "title": title}]
         #df_data = pd.DataFrame(data_record)
