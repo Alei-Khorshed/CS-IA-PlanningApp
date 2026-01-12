@@ -20,7 +20,14 @@ with st.form("data_form", clear_on_submit=True):
     title = st.text_input("Subject Title", key="txtTitle")
     #id = st.number_input("id", min_value=0, max_value=120)
     submit = st.form_submit_button("Add Subject")
-    
+
+
+    # Read the entire table into a DataFrame
+    df = pd.read_sql("SELECT * FROM Subject", conn)
+    st.write(df)
+
+
+
     if submit:
         # Create a DataFrame for the new record
         #data_record = [{"subject_id": id, "title": title}]
@@ -42,11 +49,13 @@ with st.form("data_form", clear_on_submit=True):
         # Read the entire table into a DataFrame
         df = pd.read_sql("SELECT * FROM Subject", conn)
         st.write(df)
-        #st.dataframe(df)
+
 
         
 
         conn.close()
+
+
 
 
 
