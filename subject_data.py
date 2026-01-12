@@ -17,7 +17,7 @@ conn = sql.connect(MyDB)
 
 
 with st.form("data_form"):
-    title = st.text_input("Subject Title")
+    title = st.text_input("Subject Title", key="txtTitle")
     #id = st.number_input("id", min_value=0, max_value=120)
     submit = st.form_submit_button("Add Subject")
     
@@ -45,7 +45,7 @@ with st.form("data_form"):
         #st.dataframe(df)
 
         st.text_input("Subject Title")=""
-
+        st.session_state["txtTitle"] = ""
 
         conn.close()
 
