@@ -44,7 +44,7 @@ with st.form("data_form"):
         st.write(df)
         #st.dataframe(df)
 
-
+        st.text_input("Subject Title")=""
 
 
         conn.close()
