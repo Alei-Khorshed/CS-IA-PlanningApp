@@ -7,6 +7,9 @@ import sqlite3 as sql
 st.markdown("# Subject Data ❄️")
 st.sidebar.markdown("# Subject Data ❄️")
 
+if "first_load" not in st.session_state:
+    st.session_state.first_load = "YES"
+
 
 
 
@@ -22,10 +25,10 @@ with st.form("data_form", clear_on_submit=True):
     submit = st.form_submit_button("Add Subject")
 
 
-    # Read the entire table into a DataFrame
-    df = pd.read_sql("SELECT * FROM Subject", conn)
-    st.write(df)
-
+    if st.session_state.first_load == "YES"
+        # Read the entire table into a DataFrame
+        df = pd.read_sql("SELECT * FROM Subject", conn)
+        st.write(df)
 
 
     if submit:
@@ -44,7 +47,7 @@ with st.form("data_form", clear_on_submit=True):
         cur.executemany("INSERT INTO Subject VALUES(NULL, :title)", data_record)
         conn.commit() 
 
-
+        st.session_state.first_load = "NO"
 
         # Read the entire table into a DataFrame
         df = pd.read_sql("SELECT * FROM Subject", conn)
