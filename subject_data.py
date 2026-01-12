@@ -10,7 +10,7 @@ st.sidebar.markdown("# Subject Data ❄️")
 if "first_load" not in st.session_state:
     st.session_state.first_load = "YES"
 
-
+st.write(st.session_state.first_load)
 
 
 MyDB = "CS IA DB.db"
@@ -45,7 +45,7 @@ with st.form("data_form", clear_on_submit=True):
         cur.executemany("INSERT INTO Subject VALUES(NULL, :title)", data_record)
         conn.commit() 
 
-        #st.session_state.first_load = "NO"
+        st.session_state.first_load = "NO"
 
         # Read the entire table into a DataFrame
         #df = pd.read_sql("SELECT * FROM Subject", conn)
