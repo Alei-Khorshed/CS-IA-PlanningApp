@@ -11,4 +11,4 @@ st.sidebar.markdown("# Home 🏠")
 
 
 if st.button("Add New Subject"):
-    st.switch_page(pages/subject_data.py) 
+    st.switch_page(subject_data.py) 
