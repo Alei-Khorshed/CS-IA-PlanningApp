@@ -4,8 +4,8 @@ import numpy as np
 
 import sqlite3 as sql
 
-st.markdown("# Subject Data ❄️")
-st.sidebar.markdown("# Subject Data ❄️")
+st.markdown("# Subject Data")
+st.sidebar.markdown("# Subject Data")
 
 if "first_load" not in st.session_state:
     st.session_state.first_load = "YES"
