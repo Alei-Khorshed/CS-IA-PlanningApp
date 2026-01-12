@@ -19,16 +19,14 @@ MyDB = "CS IA DB.db"
 conn = sql.connect(MyDB)
 
 
+# Read the entire table into a DataFrame
+df = pd.read_sql("SELECT * FROM Subject", conn)
+st.write(df)
+
 with st.form("data_form", clear_on_submit=True):
     title = st.text_input("Subject Title", key="txtTitle")
     #id = st.number_input("id", min_value=0, max_value=120)
     submit = st.form_submit_button("Add Subject")
-
-
-    if st.session_state.first_load == "YES":
-        # Read the entire table into a DataFrame
-        df = pd.read_sql("SELECT * FROM Subject", conn)
-        st.write(df)
 
 
     if submit:
@@ -47,11 +45,11 @@ with st.form("data_form", clear_on_submit=True):
         cur.executemany("INSERT INTO Subject VALUES(NULL, :title)", data_record)
         conn.commit() 
 
-        st.session_state.first_load = "NO"
+        #st.session_state.first_load = "NO"
 
         # Read the entire table into a DataFrame
-        df = pd.read_sql("SELECT * FROM Subject", conn)
-        st.write(df)
+        #df = pd.read_sql("SELECT * FROM Subject", conn)
+        #st.write(df)
 
 
         
