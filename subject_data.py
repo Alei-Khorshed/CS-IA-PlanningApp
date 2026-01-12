@@ -16,7 +16,7 @@ MyDB = "CS IA DB.db"
 conn = sql.connect(MyDB)
 
 
-with st.form("data_form"):
+with st.form("data_form", clear_on_submit=True):
     title = st.text_input("Subject Title", key="txtTitle")
     #id = st.number_input("id", min_value=0, max_value=120)
     submit = st.form_submit_button("Add Subject")
@@ -44,7 +44,7 @@ with st.form("data_form"):
         st.write(df)
         #st.dataframe(df)
 
-        st.session_state["txtTitle"] = ""
+        
 
         conn.close()
 
