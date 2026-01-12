@@ -1,7 +1,6 @@
 import streamlit as st 
 
-st.title("Alei Khorshed - Planning App")
-st.write("My IBDP Computer Science - IA")
+
 
 
 # Define the pages
@@ -18,6 +17,3 @@ pg.run()
 
 
 
-
-if st.button("Add New Subject"):
-    st.switch_page(subject_page) 
