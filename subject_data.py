@@ -10,7 +10,7 @@ st.sidebar.markdown("# Subject Data ❄️")
 if "first_load" not in st.session_state:
     st.session_state.first_load = "YES"
 
-st.write(st.session_state.first_load)
+# st.write(st.session_state.first_load)
 
 
 MyDB = "CS IA DB.db"
