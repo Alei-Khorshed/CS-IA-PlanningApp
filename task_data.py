@@ -39,7 +39,7 @@ with st.form("data_form", clear_on_submit=True):
     if submit:
 
         selected_id = df_subject.loc[df_subject['title'] == subject_titles, 'subject_id'].iloc[0]
-        st.caption(f"Selected Subject ID: {selected_id}")
+        st.write(selected_id)
 
 
         # Create a DataFrame for the new record
