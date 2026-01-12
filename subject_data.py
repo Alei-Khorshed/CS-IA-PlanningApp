@@ -1,4 +1,8 @@
 import streamlit as st
+import pandas as pd
+import numpy as np
+
+import sqlite3 as sql
 
 st.markdown("# Subject Data ❄️")
 st.sidebar.markdown("# Subject Data ❄️")
