@@ -57,7 +57,7 @@ with st.form("data_form", clear_on_submit=True):
     
 
         conn.close()
-        st.rerun()
+        #st.rerun()
 
 
 
