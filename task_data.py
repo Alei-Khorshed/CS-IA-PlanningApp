@@ -42,7 +42,7 @@ with st.form("data_form", clear_on_submit=True):
 
 
     if submit:
-        selected_subject_id = df_subject.loc[df_subject['title'] == subject, 'subject_id'].iloc[0]     
+        selected_subject_id = int(df_subject.loc[df_subject['title'] == subject, 'subject_id'].iloc[0])
         #st.write(selected_subject_id)    
         #st.write(subject)
         #st.write(title)
