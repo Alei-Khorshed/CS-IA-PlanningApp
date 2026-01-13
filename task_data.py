@@ -54,7 +54,7 @@ with st.form("data_form", clear_on_submit=True):
         
 
         cur = conn.cursor()
-        cur.executemany("INSERT INTO Task VALUES(NULL,:subject_id, :user_id, :title, :deadline, :difficult)", data_record)
+        cur.executemany("INSERT INTO Task VALUES(NULL,:subject_id, :user_id, :title, :deadline, :difficulty)", data_record)
         conn.commit() 
 
         st.session_state.first_load = "NO"
