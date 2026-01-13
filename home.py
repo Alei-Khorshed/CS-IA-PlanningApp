@@ -9,9 +9,19 @@ st.write("IBDP - Computer Science - IA")
 st.sidebar.markdown("# Home 🏠")
 
 
+# Create 3 equal-width columns
+col1, col2, col3 = st.columns(3)
 
-if st.button("Subject Data"):
-    st.switch_page("subject_data.py") 
+with col1:
+    if st.button("Subject Data"):
+        st.switch_page("subject_data.py") 
 
-if st.button("Task Data"):
-    st.switch_page("task_data.py") 
+with col2:
+    if st.button("Task Data"):
+        st.switch_page("task_data.py") 
+
+
+with col3:
+
+
+
