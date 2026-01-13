@@ -10,5 +10,8 @@ st.sidebar.markdown("# Home 🏠")
 
 
 
-if st.button("Add New Subject"):
+if st.button("Subject Data"):
     st.switch_page("subject_data.py") 
+
+if st.button("Task Data"):
+    st.switch_page("task_data.py") 
