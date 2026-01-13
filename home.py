@@ -21,7 +21,7 @@ with col2:
         st.switch_page("task_data.py") 
 
 
-with col3:
+
 
 
 
