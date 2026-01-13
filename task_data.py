@@ -24,39 +24,45 @@ st.write(df)
 df_subject = pd.read_sql("SELECT subject_id, title FROM Subject", conn)
 subject_titles = df_subject['title'].tolist()
 
+
+
+
+
 with st.form("data_form", clear_on_submit=True):
     subject = st.selectbox("Subject Name:", options = subject_titles)
-    selected_subject_id = df_subject.loc[df_subject['title'] == subject, 'subject_id'].iloc[0]
-        
+    selected_subject_id = df_subject.loc[df_subject['title'] == subject, 'subject_id'].iloc[0]     
 
     title = st.text_input("Task Title", key="txtTitle")
     deadline = st.text_input("Deadline", key="txtDeadline")
-    
+
+    diff_list = ["Easy", "Medium", "Hard"]
+    difficulty = st.selectbox("Difficulty Level:", diff_list)
+
 
     submit = st.form_submit_button("Add Task")
 
 
     if submit:
 
-        st.write(selected_subject_id)    
-        st.write(subject)
-        st.write(title)
+        #st.write(selected_subject_id)    
+        #st.write(subject)
+        #st.write(title)
 
         # Create a DataFrame for the new record
-        #data_record = [{"subject_id": 0, "title": title}]
-        #df_data = pd.DataFrame(data_record)
+        data_record = [{"task_id":0,   "subject_id": selected_subject_id, "user_id": 0, "title":title, "deadline":deadline, "difficulty":difficulty}]
+        df_data = pd.DataFrame(data_record)
         
 
-        #cur = conn.cursor()
-        #cur.executemany("INSERT INTO Subject VALUES(NULL, :title)", data_record)
-        #conn.commit() 
+        cur = conn.cursor()
+        cur.executemany("INSERT INTO Task VALUES(NULL,:subject_id, :user_id, :title, :deadline, :difficult)", data_record)
+        conn.commit() 
 
         st.session_state.first_load = "NO"
 
     
 
         conn.close()
-        #st.rerun()
+        st.rerun()
 
 
 
