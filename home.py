@@ -4,8 +4,10 @@ import sqlite3 as sql
 
 # Home page content
 
+
 st.title("Alei Khorshed - Planning App")
-st.write("IBDP - Computer Science - IA")
+st.markdown("## **(IBDP - Computer Science - IA)**")
+
 
 #st.markdown("# Home 🏠")
 st.sidebar.markdown("# Home 🏠")
