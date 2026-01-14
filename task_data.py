@@ -32,7 +32,8 @@ with st.form("data_form", clear_on_submit=True):
     subject = st.selectbox("Subject Name:", options = subject_titles)    
 
     title = st.text_input("Task Title", key="txtTitle")
-    deadline = st.text_input("Deadline", key="txtDeadline")
+    deadline = st.date_input("Deadline", value="today",format=st.session_state.gDateFormat,key="txtDeadline")
+
 
     diff_list = ["Easy", "Medium", "Hard"]
     difficulty = st.selectbox("Difficulty Level:", diff_list)
@@ -48,18 +49,17 @@ with st.form("data_form", clear_on_submit=True):
         #st.write(title)
 
         # Create a DataFrame for the new record
-        data_record = [{"task_id":0,   "subject_id": selected_subject_id, "user_id": 0, "title":title, "deadline":deadline, "difficulty":difficulty}]
+        data_record = [{"task_id":0,   "subject_id": selected_subject_id, "user_id": st.session_state.gCurrentUser, "title":title, "deadline":deadline, "difficulty":difficulty, "status":"PENDING"}]
         df_data = pd.DataFrame(data_record)
         
 
         cur = conn.cursor()
-        cur.executemany("INSERT INTO Task VALUES(NULL,:subject_id, :user_id, :title, :deadline, :difficulty)", data_record)
+        cur.executemany("INSERT INTO Task VALUES(NULL,:subject_id, :user_id, :title, :deadline, :difficulty, :status)", data_record)
         conn.commit() 
 
         st.session_state.first_load = "NO"
 
     
-
 
         conn.close()
         st.rerun()
