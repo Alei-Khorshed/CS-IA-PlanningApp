@@ -15,13 +15,13 @@ st.sidebar.markdown("# Home 🏠")
 
 
 # Get today's date in a specific format (day, month year)
-today = dt.now().strftime("%d, %B %Y")
+today = dt.now().strftime("%d %B %Y")
 
 st.markdown(
     f"""
     <div style="display: flex; align-items: baseline; gap: 15px;">
-        <span style="font-size: 42px; font-weight: bold; color: #000000;">Today's Date:</span>
-        <span style="font-size: 42px; font-weight: bold; color: #003366;">{today}</span>
+        <span style="font-size: 40px; font-weight: bold; color: #000000;">Today's Date:</span>
+        <span style="font-size: 40px; font-weight: bold; color: #003366;">{today}</span>
     </div>
     """, 
     unsafe_allow_html=True
@@ -32,8 +32,8 @@ def DisplayNumber(label, value):
     st.markdown(
         f"""
         <div style="text-align: left;">
-            <p style="font-size: 22px; font-weight: 400; color: #666; margin-bottom: 0px;">{label}</p>
-            <p style="font-size: 42px; font-weight: bold; color: #003366; margin-top: -10px;">{value}</p>
+            <p style="font-size: 20px; font-weight: 400; color: #666; margin-bottom: 0px;">{label}</p>
+            <p style="font-size: 40px; font-weight: bold; color: #003366; margin-top: -10px;">{value}</p>
         </div>
         """,
         unsafe_allow_html=True
