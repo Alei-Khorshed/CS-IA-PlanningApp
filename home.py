@@ -84,7 +84,7 @@ with col2:
     DisplayNumber("Progress Points", "0")
 
 with col3:
-    DisplayNumber("Progress %", "0.8%")
+    DisplayNumber("Progress %", "0%")
 
 with col4:
     DisplayNumber("", "")
