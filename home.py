@@ -87,7 +87,7 @@ with col3:
     DisplayNumber("Progress %", "0.8%")
 
 with col4:
-    DisplayNumber("Progress %", "0.8%")
+    DisplayNumber("", "")
 
 
 
