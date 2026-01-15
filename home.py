@@ -74,10 +74,8 @@ with col4:
     goal_timer()
 
 
-st.divider()
-
-# Create 3 columns
-col1, col2, col3 = st.columns(3)
+# Create 4 columns
+col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     DisplayNumber("Goal Points", "0")
@@ -88,6 +86,8 @@ with col2:
 with col3:
     DisplayNumber("Progress %", "0.8%")
 
+with col4:
+    DisplayNumber("Progress %", "0.8%")
 
 
 
