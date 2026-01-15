@@ -43,27 +43,6 @@ def DisplayNumber(label, value):
 
 @st.fragment(run_every="1s")
 def goal_timer():
-    # This specific function will rerun every 1 second
-    current_time = dt.now().strftime("%H:%M:%S")
-    st.markdown(
-        f"""
-        <div style="
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 5px;
-            background-color: #f0f2f6;
-            border: 1px solid #d1d5db;
-            width: fit-content;
-            margin-top: 10px;
-        ">
-            <span style="font-size: 22px; color: #555; font-weight: bold; margin-right: 10px;">Session Time:</span>
-            <span style="font-size: 42px; font-family: monospace; color: #003366; font-weight: bold;">{current_time}</span>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-def timer_column():
     current_time = dt.now().strftime("%H:%M:%S")
     st.markdown(
         f"""
@@ -75,9 +54,6 @@ def timer_column():
         unsafe_allow_html=True
     )
 
-
-# Call the fragment
-goal_timer()
 
 
 st.divider()
@@ -95,7 +71,7 @@ with col3:
     DisplayNumber("End Time", "0")
 
 with col4:
-    timer_column()
+    goal_timer()
 
 
 st.divider()
