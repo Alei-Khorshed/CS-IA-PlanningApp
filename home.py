@@ -134,13 +134,13 @@ with col2:
     if st.session_state.gStarttime:
         DisplayNumber("Start Time", st.session_state.gStarttime.strftime("%H:%M:%S"))
     else:
-        DisplayNumber("Start Time","00:00:00")
+        DisplayNumber("Start Time","")
 
 with col3:
     if st.session_state.gEndtime:
         DisplayNumber("End Time", st.session_state.gEndtime.strftime("%H:%M:%S"))
     else:
-        DisplayNumber("End Time","00:00:00")
+        DisplayNumber("End Time","")
 
 with col4:
     goal_timer()
@@ -148,8 +148,8 @@ with col4:
 
 
 
-# Create 4 columns
-col1, col2, col3, col4 = st.columns(4)
+# Create 5 columns
+col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
     DisplayNumber("Goal Points", "0")
@@ -161,8 +161,10 @@ with col3:
     DisplayNumber("Progress %", "0%")
 
 with col4:
-    DisplayNumber("", "")
+    DisplayNumber("Pending Tasks", st.session_state.gNoTasksPending)
 
+with col5:
+    DisplayNumber("Completed Tasks", st.session_state.gNoTasksCompleted)
 
 
 MyDB = "CS IA DB.db"

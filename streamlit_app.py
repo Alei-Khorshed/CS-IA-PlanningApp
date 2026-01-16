@@ -27,6 +27,12 @@ if "gGoalpoints" not in st.session_state:
 if "gProgresspoints" not in st.session_state:
     st.session_state.gProgresspoints = 0
 
+if "gNoTasksPending" not in st.session_state:
+    st.session_state.gNoTasksPending = 0
+
+if "gNoTasksCompleted" not in st.session_state:
+    st.session_state.gNoTasksCompleted = 0
+
 
 # Define the pages
 home_page = st.Page("home.py", title="Home", icon="🏠", default=True)
