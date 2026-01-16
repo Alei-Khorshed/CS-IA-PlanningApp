@@ -12,7 +12,8 @@ st.title("Alei Khorshed - Planning App")
 #st.markdown("# Home 🏠")
 st.sidebar.markdown("# Home 🏠")
 
-
+st.success("Goal Reached!")
+st.balloons()
 
 # Get today's date in a specific format (day, month year)
 today = dt.now().strftime("%d %B %Y")
