@@ -47,13 +47,13 @@ with col1:
     if st.button("Start Working"):
         st.session_state.gFlagWorking = True
         st.session_state.gCurrentActivity = "WORKING"   
-        st.session_state.gStarttime = dt.now().strftime("%H:%M:%S")  
+        st.session_state.gStarttime = dt.now()
 
 with col2:
     if st.button("Stop Working"):
         st.session_state.gFlagWorking = False
         st.session_state.gCurrentActivity = "IDLE"    
-        st.session_state.gEndtime = dt.now().strftime("%H:%M:%S")  
+        st.session_state.gEndtime = dt.now())  
 
 
 
@@ -98,14 +98,22 @@ def DisplayNumber(label, value):
 @st.fragment(run_every="1s")
 def goal_timer():
     if st.session_state.gFlagWorking:
-        current_time = dt.now().strftime("%H:%M:%S")
+        #current_time = dt.now().strftime("%H:%M:%S")
+        diff = dt.now() - st.session_state.gStarttime
+        # Format the difference into Hours:Minutes:Seconds        
+        seconds = int(diff.total_seconds()) # total_seconds() gives us the duration
+        hours = seconds // 3600
+        minutes = (seconds % 3600) // 60
+        secs = seconds % 60
+        elapsed_time = f"{hours:02d}:{minutes:02d}:{secs:02d}"        
     else:
-        current_time = ""
+        #current_time = ""
+        elapsed_time = "00:00:00"
     st.markdown(
         f"""
         <div style="text-align: left;">
             <p style="font-size: 18px; font-weight: 400; color: #000000; margin-bottom: 0px;">Session Time</p>
-            <p style="font-size: 30px; font-weight: bold; color: #003366; margin-top: -10px; font-family: monospace;">{current_time}</p>
+            <p style="font-size: 30px; font-weight: bold; color: #003366; margin-top: -10px; font-family: monospace;">{elapsed_time}</p>
         </div>
         """,
         unsafe_allow_html=True
@@ -123,10 +131,10 @@ with col1:
     DisplayNumber("Current Activity", st.session_state.gCurrentActivity)
 
 with col2:
-    DisplayNumber("Start Time", st.session_state.gStarttime)
+    DisplayNumber("Start Time", st.session_state.gStarttime.strftime("%H:%M:%S")
 
 with col3:
-    DisplayNumber("End Time", st.session_state.gEndtime)
+    DisplayNumber("End Time", st.session_state.gEndtime.strftime("%H:%M:%S")
 
 with col4:
     goal_timer()
