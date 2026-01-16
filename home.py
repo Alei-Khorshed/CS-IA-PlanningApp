@@ -38,7 +38,7 @@ conn = sql.connect(MyDB)
 
 # Read information about todays GloalPoints 
 
-todaygoaldate = dt.now().strftime(st.session_state.gDateFormat) 
+todaygoaldate = dt.now().strftime("%d/%m/%Y") 
 st.write(todaygoaldate)
 df_GoalPointsToday = pd.read_sql("SELECT * FROM GoalPoints WHERE date = ?", conn, params=[todaygoaldate])
 st.write(df_GoalPointsToday)
