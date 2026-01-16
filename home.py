@@ -41,7 +41,12 @@ conn = sql.connect(MyDB)
 todaygoaldate = dt.now().strftime("%Y-%m-%d") 
 st.write(todaygoaldate)
 df_GoalPointsToday = pd.read_sql("SELECT * FROM GoalPoints WHERE date = ?", conn, params=[todaygoaldate])
+
+# DEBUG: See what is actually happening
+st.write(f"Searching for: {todaygoaldate}")
 st.write(df_GoalPointsToday)
+
+
 if not df_GoalPointsToday.empty:
     goal_row = df_GoalPointsToday.iloc[0]
 
