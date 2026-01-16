@@ -46,13 +46,13 @@ col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
     if st.button("Start Working"):
         st.session_state.gFlagWorking = True
-        st.session_state.gCurrentActivity = "WORKING" 
-        st.write(st.session_state.gCurrentActivity) 
-        
+        st.session_state.gCurrentActivity = "WORKING"     
 
 with col2:
     if st.button("Stop Working"):
-        st.switch_page("task_data.py") 
+        st.session_state.gFlagWorking = False
+        st.session_state.gCurrentActivity = "IDLE"     
+
 
 
 with col3:
