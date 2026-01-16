@@ -39,13 +39,7 @@ conn = sql.connect(MyDB)
 # Read information about todays GloalPoints 
 
 todaygoaldate = dt.now().strftime("%Y-%m-%d") 
-st.write(todaygoaldate)
 df_GoalPointsToday = pd.read_sql("SELECT * FROM GoalPoints WHERE date = ?", conn, params=[todaygoaldate])
-
-# DEBUG: See what is actually happening
-st.write(f"Searching for: {todaygoaldate}")
-st.write(df_GoalPointsToday)
-
 
 if not df_GoalPointsToday.empty:
     goal_row = df_GoalPointsToday.iloc[0]
@@ -53,6 +47,7 @@ if not df_GoalPointsToday.empty:
     st.session_state.gGoalpoints = int(goal_row['targetpoints'])
     st.session_state.gProgresspoints = int(goal_row['progresspoints'])
     current_desc = goal_row['description']
+    st.write("Today's Goal: "+current_desc)
 
 else:
     # 5. Handle the case where no row exists for today
