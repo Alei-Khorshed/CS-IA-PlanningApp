@@ -12,15 +12,15 @@ st.title("Alei Khorshed - Planning App")
 #st.markdown("# Home 🏠")
 st.sidebar.markdown("# Home 🏠")
 
-"""
-st.session_state.gFlagWorking = False
-st.session_state.gCurrentActivity = "NONE"
-st.session_state.gStarttime = ""
-st.session_state.gEndtime = ""
-st.session_state.gTotalSessiontime = ""
-st.session_state.gGoalpoints = 0
-st.session_state.gProgresspoints = 0
-"""
+
+#st.session_state.gFlagWorking = False
+#st.session_state.gCurrentActivity = "NONE"
+#st.session_state.gStarttime = ""
+#st.session_state.gEndtime = ""
+#st.session_state.gTotalSessiontime = ""
+#st.session_state.gGoalpoints = 0
+#st.session_state.gProgresspoints = 0
+
 
 # Determine current goal status status
 if st.session_state.gFlagWorking == False:
