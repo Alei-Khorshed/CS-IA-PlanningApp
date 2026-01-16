@@ -72,10 +72,10 @@ with col5:
 
 
 # Determine current goal status status
-if st.session_state.gFlagWorking == False:
-    st.session_state.gCurrentActivity = "NONE"    
-else:
-    st.session_state.gCurrentActivity = "WORKING"
+#if st.session_state.gFlagWorking == False:
+#    st.session_state.gCurrentActivity = "NONE"    
+#else:
+#    st.session_state.gCurrentActivity = "WORKING"
 
 
 
