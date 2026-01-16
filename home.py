@@ -106,18 +106,6 @@ with col4:
     DisplayNumber("", "")
 
 
-@st.fragment
-def status_button_area():
-    # Adding some spacing
-    st.write("---") 
-    if st.button("Refresh Data"):
-        # This message only appears inside this fragment when clicked
-        st.success("Data Updated!!") 
-        # Only this small section reruns, NOT the whole page.
-
-# 2. YOU MUST CALL THE FUNCTION HERE
-status_button_area()
-
 st.divider()
 # Create 3 equal-width columns
 col1, col2, col3, col4, col5 = st.columns(5)
@@ -126,6 +114,7 @@ col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
     if st.button("Start Working"):
         st.session_state.gCurrentActivity = "WORKING" 
+        st.write("Working started") 
 
 with col2:
     if st.button("Stop Working"):
