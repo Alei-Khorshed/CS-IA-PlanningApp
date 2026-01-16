@@ -107,14 +107,16 @@ with col4:
 
 
 @st.fragment
-def simple_counter():
-    if st.button("Click Me"):
-        st.write("Button clicked!")
-        # Only this fragment reruns. 
-        # The rest of your dashboard (like your Revenue/Active Users) 
-        # won't blink or reload.
+def status_button_area():
+    # Adding some spacing
+    st.write("---") 
+    if st.button("Refresh Data"):
+        # This message only appears inside this fragment when clicked
+        st.success("Data Updated!") 
+        # Only this small section reruns, NOT the whole page.
 
-simple_counter()
+# 2. YOU MUST CALL THE FUNCTION HERE
+status_button_area()
 
 st.divider()
 # Create 3 equal-width columns
