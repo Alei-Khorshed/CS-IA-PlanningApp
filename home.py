@@ -37,11 +37,10 @@ conn = sql.connect(MyDB)
 #conn.commit() 
 
 # Read information about todays GloalPoints 
-df_GoalPointsToday = pd.read_sql("SELECT * FROM GoalPoints Where date='" + today + "'", conn)
-st.write(df_GoalPointsToday)
 
 todaygoaldate = today = dt.now().strftime(st.session_state.gDateFormat) 
 df_GoalPointsToday = pd.read_sql("SELECT * FROM GoalPoints WHERE date = ?", conn, params=[todaygoaldate])
+st.write(df_GoalPointsToday)
 if not df_GoalPointsToday.empty:
     goal_row = df_GoalPointsToday.iloc[0]
 
