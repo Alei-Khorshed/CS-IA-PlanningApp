@@ -52,7 +52,7 @@ if not df_GoalPointsToday.empty:
 
 else:
     # 5. Handle the case where no row exists for today
-    st.warning("No goal set for today yet.")
+    st.status("No goal set for today yet.")
     st.session_state.gGoalpoints = 0
     st.session_state.gProgresspoints = 0
 
