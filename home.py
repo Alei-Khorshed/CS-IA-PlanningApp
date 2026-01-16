@@ -13,22 +13,6 @@ st.title("Alei Khorshed - Planning App")
 st.sidebar.markdown("# Home 🏠")
 
 
-#st.session_state.gFlagWorking = False
-#st.session_state.gCurrentActivity = "NONE"
-#st.session_state.gStarttime = ""
-#st.session_state.gEndtime = ""
-#st.session_state.gTotalSessiontime = ""
-#st.session_state.gGoalpoints = 0
-#st.session_state.gProgresspoints = 0
-
-
-# Determine current goal status status
-if st.session_state.gFlagWorking == False:
-    st.session_state.gCurrentActivity = "NONE"    
-else:
-    st.session_state.gCurrentActivity = "WORKING"
-
-
 
 # Get today's date in a specific format (day, month year)
 today = dt.now().strftime("%d %B %Y")
@@ -42,6 +26,59 @@ st.markdown(
     """, 
     unsafe_allow_html=True
 )
+
+#st.session_state.gFlagWorking = False
+#st.session_state.gCurrentActivity = "NONE"
+#st.session_state.gStarttime = ""
+#st.session_state.gEndtime = ""
+#st.session_state.gTotalSessiontime = ""
+#st.session_state.gGoalpoints = 0
+#st.session_state.gProgresspoints = 0
+
+
+
+
+st.divider()
+# Create 3 equal-width columns
+col1, col2, col3, col4, col5 = st.columns(5)
+
+
+with col1:
+    if st.button("Start Working"):
+        st.session_state.gFlagWorking = True
+        st.session_state.gCurrentActivity = "WORKING" 
+        st.write(st.session_state.gCurrentActivity) 
+        st.rerun()
+
+with col2:
+    if st.button("Stop Working"):
+        st.switch_page("task_data.py") 
+
+
+with col3:
+    if st.button("Subject Data"):
+        st.switch_page("subject_data.py") 
+
+with col4:
+    if st.button("Task Data"):
+        st.switch_page("task_data.py") 
+
+
+with col5:
+    if st.button("Goal Planning"):
+        st.switch_page("goal_planning.py") 
+
+
+
+
+# Determine current goal status status
+if st.session_state.gFlagWorking == False:
+    st.session_state.gCurrentActivity = "NONE"    
+else:
+    st.session_state.gCurrentActivity = "WORKING"
+
+
+
 
 def DisplayNumber(label, value):
     # Define a function to display a small title and a large bold dark blue number  
@@ -104,37 +141,6 @@ with col3:
 
 with col4:
     DisplayNumber("", "")
-
-
-st.divider()
-# Create 3 equal-width columns
-col1, col2, col3, col4, col5 = st.columns(5)
-
-
-with col1:
-    if st.button("Start Working"):
-        st.session_state.gFlagWorking = True
-        st.session_state.gCurrentActivity = "WORKING" 
-        st.write(st.session_state.gCurrentActivity) 
-        st.rerun()
-
-with col2:
-    if st.button("Stop Working"):
-        st.switch_page("task_data.py") 
-
-
-with col3:
-    if st.button("Subject Data"):
-        st.switch_page("subject_data.py") 
-
-with col4:
-    if st.button("Task Data"):
-        st.switch_page("task_data.py") 
-
-
-with col5:
-    if st.button("Goal Planning"):
-        st.switch_page("goal_planning.py") 
 
 
 
