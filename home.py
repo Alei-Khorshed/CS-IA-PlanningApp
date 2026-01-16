@@ -53,7 +53,7 @@ with col2:
     if st.button("Stop Working"):
         st.session_state.gFlagWorking = False
         st.session_state.gCurrentActivity = "IDLE"    
-        st.session_state.gEndtime = dt.now())  
+        st.session_state.gEndtime = dt.now()  
 
 
 
