@@ -46,8 +46,16 @@ if not df_GoalPointsToday.empty:
 
     st.session_state.gGoalpoints = int(goal_row['targetpoints'])
     st.session_state.gProgresspoints = int(goal_row['progresspoints'])
-    current_desc = goal_row['description']
-    st.write("Today's Goal: "+current_desc)
+    goal_desc = goal_row['description']
+    st.markdown(
+        f"""
+        <div style="display: flex; align-items: baseline; gap: 15px;">
+            <span style="font-size: 30px; font-weight: bold; color: #000000;">Today's Goal:</span>
+            <span style="font-size: 30px; font-weight: bold; color: #003366;">{goal_desc}</span>
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )
 
 else:
     # 5. Handle the case where no row exists for today
