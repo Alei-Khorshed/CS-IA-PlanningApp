@@ -6,7 +6,7 @@ from datetime import datetime as dt
 
 # Home page content
 st.write("IBDP - Computer Science - IA")
-st.title("Alei Khorshed - Planning App")
+st.title("Alei1 Khorshed - Planning App")
 
 
 #st.markdown("# Home 🏠")
