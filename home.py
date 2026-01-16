@@ -12,6 +12,22 @@ st.title("Alei Khorshed - Planning App")
 #st.markdown("# Home 🏠")
 st.sidebar.markdown("# Home 🏠")
 
+"""
+st.session_state.gFlagWorking = False
+st.session_state.gCurrentActivity = "NONE"
+st.session_state.gStarttime = ""
+st.session_state.gEndtime = ""
+st.session_state.gTotalSessiontime = ""
+st.session_state.gGoalpoints = 0
+st.session_state.gProgresspoints = 0
+"""
+
+# Determine current goal status status
+if st.session_state.gFlagWorking == False:
+    st.session_state.gCurrentActivity = "NONE"    
+else:
+    st.session_state.gCurrentActivity = "WORKING"
+
 
 
 # Get today's date in a specific format (day, month year)
@@ -62,7 +78,7 @@ st.divider()
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    DisplayNumber("Current Activity", "NONE")
+    DisplayNumber("Current Activity", st.session_state.gCurrentActivity)
 
 with col2:
     DisplayNumber("Start Time", "0")

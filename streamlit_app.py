@@ -17,8 +17,8 @@ st.session_state.gProgresspoints = 0
 # Define the pages
 home_page = st.Page("home.py", title="Home", icon="🏠", default=True)
 subject_page = st.Page("subject_data.py", title="Subject Data", icon="➕")
-task_page = st.Page("task_data.py", title="Task Data", icon="📊")
-goal_planning = st.Page("goal_planning.py", title="Goal Planning", icon="➕")
+task_page = st.Page("task_data.py", title="Task Data", icon="➕")
+goal_planning = st.Page("goal_planning.py", title="Goal Planning", icon="📊")
 
 
 # Set up navigation
