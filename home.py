@@ -27,16 +27,34 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-#st.session_state.gFlagWorking = False
-#st.session_state.gCurrentActivity = "NONE"
-#st.session_state.gStarttime = ""
-#st.session_state.gEndtime = ""
-#st.session_state.gTotalSessiontime = ""
-#st.session_state.gGoalpoints = 0
-#st.session_state.gProgresspoints = 0
 
 
+# Create DB Connection 
+MyDB = "CS IA DB.db"
 
+conn = sql.connect(MyDB)
+
+#cur = conn.cursor()
+#cur.execute("ALTER TABLE GoalPoints ADD COLUMN description TEXT")
+#conn.commit() 
+
+# Read information about todays GloalPoints 
+df_GoalPointsToday = pd.read_sql("SELECT * FROM GoalPoints Where date='" + today + "'", conn)
+st.write(df_GoalPointsToday)
+
+df_GoalPointsToday = pd.read_sql("SELECT * FROM GoalPoints WHERE date = ?", conn, params=[today])
+if not df_GoalPointsToday.empty:
+    goal_row = df_GoalPointsToday.iloc[0]
+
+    st.session_state.gGoalpoints = int(goal_row['targetpoints'])
+    st.session_state.gProgresspoints = int(goal_row['progresspoints'])
+    current_desc = goal_row['description']
+
+else:
+    # 5. Handle the case where no row exists for today
+    st.warning("No goal set for today yet.")
+    st.session_state.gGoalpoints = 0
+    st.session_state.gProgresspoints = 0
 
 st.divider()
 # Create 3 equal-width columns
@@ -152,10 +170,10 @@ with col4:
 col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
-    DisplayNumber("Goal Points", "0")
+    DisplayNumber("Goal Points", st.session_state.gGoalpoints)
 
 with col2:
-    DisplayNumber("Progress Points", "0")
+    DisplayNumber("Progress Points", st.session_state.gProgresspoints)
 
 with col3:
     DisplayNumber("Progress %", "0%")
@@ -165,16 +183,6 @@ with col4:
 
 with col5:
     DisplayNumber("Completed Tasks", st.session_state.gNoTasksCompleted)
-
-
-MyDB = "CS IA DB.db"
-
-# Create DB Connection 
-conn = sql.connect(MyDB)
-
-#cur = conn.cursor()
-#cur.execute("ALTER TABLE GoalPoints ADD COLUMN description TEXT")
-#conn.commit() 
 
 
 if "first_load" not in st.session_state:

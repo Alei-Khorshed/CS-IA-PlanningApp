@@ -1,5 +1,7 @@
 import streamlit as st 
 
+st.set_page_config(layout="wide")
+
 if "gCurrentUser" not in st.session_state:
     st.session_state.gCurrentUser = 1
 
