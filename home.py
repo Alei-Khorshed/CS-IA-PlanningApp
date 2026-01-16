@@ -97,7 +97,7 @@ def DisplayNumber(label, value):
 
 @st.fragment(run_every="1s")
 def goal_timer():
-    if st.session_state.gFlagWorking:
+    if st.session_state.gFlagWorking and st.session_state.gStarttime:
         #current_time = dt.now().strftime("%H:%M:%S")
         diff = dt.now() - st.session_state.gStarttime
         # Format the difference into Hours:Minutes:Seconds        
@@ -131,10 +131,12 @@ with col1:
     DisplayNumber("Current Activity", st.session_state.gCurrentActivity)
 
 with col2:
-    DisplayNumber("Start Time", st.session_state.gStarttime.strftime("%H:%M:%S"))
+    if st.session_state.gStarttime:
+        DisplayNumber("Start Time", st.session_state.gStarttime.strftime("%H:%M:%S"))
 
 with col3:
-    DisplayNumber("End Time", st.session_state.gEndtime.strftime("%H:%M:%S"))
+    if st.session_state.gEndtime:
+        DisplayNumber("End Time", st.session_state.gEndtime.strftime("%H:%M:%S"))
 
 with col4:
     goal_timer()
