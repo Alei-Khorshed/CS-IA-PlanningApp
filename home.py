@@ -46,12 +46,14 @@ col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
     if st.button("Start Working"):
         st.session_state.gFlagWorking = True
-        st.session_state.gCurrentActivity = "WORKING"     
+        st.session_state.gCurrentActivity = "WORKING"   
+        st.session_state.gStarttime = dt.now().strftime("%H:%M:%S")  
 
 with col2:
     if st.button("Stop Working"):
         st.session_state.gFlagWorking = False
-        st.session_state.gCurrentActivity = "IDLE"     
+        st.session_state.gCurrentActivity = "IDLE"    
+        st.session_state.gEndtime = dt.now().strftime("%H:%M:%S")  
 
 
 
