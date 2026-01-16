@@ -95,7 +95,10 @@ def DisplayNumber(label, value):
 
 @st.fragment(run_every="1s")
 def goal_timer():
-    current_time = dt.now().strftime("%H:%M:%S")
+    if st.session_state.gFlagWorking:
+        current_time = dt.now().strftime("%H:%M:%S")
+    else:
+        current_time = ""
     st.markdown(
         f"""
         <div style="text-align: left;">
@@ -125,6 +128,8 @@ with col3:
 
 with col4:
     goal_timer()
+
+
 
 
 # Create 4 columns
