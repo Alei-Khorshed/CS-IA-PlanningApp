@@ -123,10 +123,10 @@ with col1:
     DisplayNumber("Current Activity", st.session_state.gCurrentActivity)
 
 with col2:
-    DisplayNumber("Start Time", "0")
+    DisplayNumber("Start Time", st.session_state.gStarttime)
 
 with col3:
-    DisplayNumber("End Time", "0")
+    DisplayNumber("End Time", st.session_state.gEndtime)
 
 with col4:
     goal_timer()
