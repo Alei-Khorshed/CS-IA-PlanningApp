@@ -106,6 +106,14 @@ with col4:
     DisplayNumber("", "")
 
 
+@st.fragment
+def simple_counter():
+    if st.button("Click Me"):
+        st.write("Button clicked!")
+        # Only this fragment reruns. 
+        # The rest of your dashboard (like your Revenue/Active Users) 
+        # won't blink or reload.
+
 
 st.divider()
 # Create 3 equal-width columns
@@ -114,7 +122,7 @@ col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
     if st.button("Start Working"):
-        st.switch_page("subject_data.py") 
+        st.session_state.gCurrentActivity = "WORKING" 
 
 with col2:
     if st.button("Stop Working"):
