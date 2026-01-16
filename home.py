@@ -131,10 +131,10 @@ with col1:
     DisplayNumber("Current Activity", st.session_state.gCurrentActivity)
 
 with col2:
-    DisplayNumber("Start Time", st.session_state.gStarttime.strftime("%H:%M:%S")
+    DisplayNumber("Start Time", st.session_state.gStarttime.strftime("%H:%M:%S"))
 
 with col3:
-    DisplayNumber("End Time", st.session_state.gEndtime.strftime("%H:%M:%S")
+    DisplayNumber("End Time", st.session_state.gEndtime.strftime("%H:%M:%S"))
 
 with col4:
     goal_timer()
