@@ -167,8 +167,44 @@ if "first_load" not in st.session_state:
 st.markdown("## **My Tasks**")
 # Read and display Tasks
 df_task = pd.read_sql("SELECT * FROM Task", conn)
-task_titles = df_task['title'].tolist()
-st.write(df_task)
+#task_titles = df_task['title'].tolist()
+#st.write(df_task)
+
+
+# Display the Tasks in a dataframe with ROW SELECTION enabled
+# 'on_select="rerun"' makes the app reactive when a row is clicked
+event = st.dataframe(
+    df_task, 
+    use_container_width=True, 
+    hide_index=True,
+    on_select="rerun",
+    selection_mode="single-row" 
+)
+
+# Handle the selection logic
+selected_rows = event.selection.rows
+
+if len(selected_rows) > 0:
+    # Get the actual data of the selected row
+    row_index = selected_rows[0]
+    task_id = df_task.iloc[row_index]['task_id'] 
+    task_title = df_task.iloc[row_index]['title']
+
+    st.info(f"Selected Task: **{task_title}**")
+
+    if st.button("Mark Task Completed", type="primary"):
+        # 4. Execute the Update Query
+        cursor = conn.cursor()
+        cursor.execute("UPDATE Task SET status = 'COMPLETED' WHERE id = ?", (int(task_id),))
+        conn.commit()
+        
+        st.success(f"Task '{task_title}' marked as completed!")
+        st.rerun() # Refresh page to show updated DB data
+else:
+    st.write("Please click a row in the table to select a task.")
+
+
+
 
 st.markdown("## **My Goal Planning**")
 # Read data for Goal points from the database into a DataFrame and display it
