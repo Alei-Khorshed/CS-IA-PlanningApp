@@ -181,8 +181,8 @@ if "first_load" not in st.session_state:
     st.session_state.first_load = "YES"
 
 st.markdown("## **My Tasks**")
-# Read and display Tasks
-df_task = pd.read_sql("SELECT * FROM Task", conn)
+# Read and display Tasks that are pending
+df_task = pd.read_sql("SELECT * FROM Task Where status='PENDING' ", conn)
 #task_titles = df_task['title'].tolist()
 #st.write(df_task)
 
@@ -208,7 +208,7 @@ if len(selected_rows) > 0:
 
     st.info(f"Selected Task: **{task_title}**")
 
-    if st.button("Mark Task Completed", type="primary"):
+    if st.button("Mark Task Completed"):
         # 4. Execute the Update Query
         cursor = conn.cursor()
         cursor.execute("UPDATE Task SET status = 'COMPLETED' WHERE task_id = ?", (int(task_id),))
