@@ -112,7 +112,7 @@ def status_button_area():
     st.write("---") 
     if st.button("Refresh Data"):
         # This message only appears inside this fragment when clicked
-        st.success("Data Updated!") 
+        st.success("Data Updated!!") 
         # Only this small section reruns, NOT the whole page.
 
 # 2. YOU MUST CALL THE FUNCTION HERE
