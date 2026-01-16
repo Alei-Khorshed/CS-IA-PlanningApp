@@ -40,7 +40,6 @@ def DisplayNumber(label, value):
     )
 
 
-
 @st.fragment(run_every="1s")
 def goal_timer():
     current_time = dt.now().strftime("%H:%M:%S")
@@ -58,6 +57,7 @@ def goal_timer():
 
 st.divider()
 
+# Display Status of current goal planning
 # Create 4 columns
 col1, col2, col3, col4 = st.columns(4)
 
@@ -93,18 +93,28 @@ with col4:
 
 st.divider()
 # Create 3 equal-width columns
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4, col5 = st.columns(5)
+
 
 with col1:
-    if st.button("Subject Data"):
+    if st.button("Start Working"):
         st.switch_page("subject_data.py") 
 
 with col2:
-    if st.button("Task Data"):
+    if st.button("Stop Working"):
         st.switch_page("task_data.py") 
 
 
 with col3:
+    if st.button("Subject Data"):
+        st.switch_page("subject_data.py") 
+
+with col4:
+    if st.button("Task Data"):
+        st.switch_page("task_data.py") 
+
+
+with col5:
     if st.button("Goal Planning"):
         st.switch_page("goal_planning.py") 
 
