@@ -114,6 +114,7 @@ def simple_counter():
         # The rest of your dashboard (like your Revenue/Active Users) 
         # won't blink or reload.
 
+simple_counter()
 
 st.divider()
 # Create 3 equal-width columns
