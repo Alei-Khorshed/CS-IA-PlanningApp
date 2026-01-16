@@ -12,9 +12,6 @@ st.title("Alei Khorshed - Planning App")
 #st.markdown("# Home 🏠")
 st.sidebar.markdown("# Home 🏠")
 
-st.success("Goal Reached!")
-st.balloons()
-
 # Get today's date in a specific format (day, month year)
 today = dt.now().strftime("%d %B %Y")
 
@@ -64,9 +61,13 @@ col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
     if st.button("Start Working"):
-        st.session_state.gFlagWorking = True
-        st.session_state.gCurrentActivity = "WORKING"   
-        st.session_state.gStarttime = dt.now()
+        if st.session_state.gGoalpoints != 0:
+            st.session_state.gFlagWorking = True
+            st.session_state.gCurrentActivity = "WORKING"   
+            st.session_state.gStarttime = dt.now()
+        else:
+            st.warning("You need to first add a goal point for today. Goto Goal Planning")
+        
 
 with col2:
     if st.button("Stop Working"):
