@@ -134,13 +134,13 @@ with col2:
     if st.session_state.gStarttime:
         DisplayNumber("Start Time", st.session_state.gStarttime.strftime("%H:%M:%S"))
     else:
-        DisplayNumber("00:00:00")
+        DisplayNumber("Start Time","00:00:00")
 
 with col3:
     if st.session_state.gEndtime:
         DisplayNumber("End Time", st.session_state.gEndtime.strftime("%H:%M:%S"))
     else:
-        DisplayNumber("00:00:00")
+        DisplayNumber("End Time","00:00:00")
 
 with col4:
     goal_timer()
