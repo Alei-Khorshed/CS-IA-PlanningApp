@@ -6,7 +6,7 @@ from datetime import datetime as dt
 
 # Home page content
 st.write("IBDP - Computer Science - IA")
-st.title("Alei1 Khorshed - Planning App")
+st.title("Alei Khorshed - Planning App")
 
 
 #st.markdown("# Home 🏠")
@@ -114,7 +114,7 @@ col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
     if st.button("Start Working"):
         st.session_state.gCurrentActivity = "WORKING" 
-        st.write("Working started") 
+        st.write(st.session_state.gCurrentActivity) 
 
 with col2:
     if st.button("Stop Working"):
