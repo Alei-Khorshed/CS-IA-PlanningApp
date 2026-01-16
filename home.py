@@ -116,6 +116,7 @@ with col1:
         st.session_state.gFlagWorking = True
         st.session_state.gCurrentActivity = "WORKING" 
         st.write(st.session_state.gCurrentActivity) 
+        st.rerun()
 
 with col2:
     if st.button("Stop Working"):
