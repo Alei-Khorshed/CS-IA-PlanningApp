@@ -113,7 +113,7 @@ col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
     if st.button("Start Working"):
-        st.session_state.gFlagWorking == True
+        st.session_state.gFlagWorking = True
         st.session_state.gCurrentActivity = "WORKING" 
         st.write(st.session_state.gCurrentActivity) 
 
