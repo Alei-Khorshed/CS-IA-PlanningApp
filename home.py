@@ -92,7 +92,7 @@ df_ProgressPoints = pd.read_sql("SELECT * FROM Task WHERE status='COMPLETED' AND
 
 if not df_ProgressPoints.empty:
     difficulty_map = {"Easy": 1, "Medium": 2, "Hard": 3}
-    total_points = df_ProgressPoints['difficult'].map(difficulty_map).sum()
+    total_points = df_ProgressPoints['difficulty'].map(difficulty_map).sum()
     st.session_state.gProgresspoints = total_points
 else:
     st.session_state.gProgresspoints = 0
