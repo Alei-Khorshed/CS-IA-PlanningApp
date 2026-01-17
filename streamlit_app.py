@@ -17,6 +17,9 @@ if "gCurrentActivity" not in st.session_state:
 if "gStarttime" not in st.session_state:
     st.session_state.gStarttime = ""
 
+if "gStarttimelast" not in st.session_state:
+    st.session_state.gStarttimelast = ""
+
 if "gEndtime" not in st.session_state:
     st.session_state.gEndtime = ""
 

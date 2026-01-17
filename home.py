@@ -116,10 +116,14 @@ with col1:
         if st.session_state.gGoalpoints != 0:
             st.session_state.gFlagWorking = True
             st.session_state.gCurrentActivity = "WORKING" 
+            st.session_state.gEndtime = ""
             # Check if first time to start working to get start time  
             if st.session_state.gStarttime == "":
                 st.session_state.gStarttime = dt.now()
-            st.session_state.gEndtime = ""
+                st.session_state.gStarttimelast = st.session_state.gStarttime
+            else:
+                st.session_state.gStarttimelast = dt.now()
+    
         else:
             st.error("You need to first add a goal point for today. Goto Goal Planning")
         
@@ -165,30 +169,31 @@ def DisplayNumber(label, value):
 @st.fragment(run_every="1s")
 def goal_timer():
     if st.session_state.gStarttime:
-        # Check if working
-        if st.session_state.gFlagWorking:
-            #current_time = dt.now().strftime("%H:%M:%S")
-            diff = dt.now() - st.session_state.gStarttime
+        # Check if first run 
+        if st.session_state.gStarttime !="":
+            # Check if working
+            if st.session_state.gFlagWorking:
+                diff = dt.now() - st.session_state.gStarttimelast
+            else:
+                diff = st.session_state.gEndtime - st.session_state.gStarttimelast
+
             # Format the difference into Hours:Minutes:Seconds        
             seconds = int(diff.total_seconds()) # total_seconds() gives us the duration
             hours = seconds // 3600
             minutes = (seconds % 3600) // 60
             secs = seconds % 60
-            elapsed_time = f"{hours:02d}:{minutes:02d}:{secs:02d}"        
+            elapsed_time = f"{hours:02d}:{minutes:02d}:{secs:02d}"                        
         else:
-            # Check if not first run and if not then display last elapsed time
-            if st.session_state.gStarttime != "":
-                diff = st.session_state.gEndtime - st.session_state.gStarttime
-                # Format the difference into Hours:Minutes:Seconds        
-                seconds = int(diff.total_seconds()) # total_seconds() gives us the duration
-                hours = seconds // 3600
-                minutes = (seconds % 3600) // 60
-                secs = seconds % 60
-                elapsed_time = f"{hours:02d}:{minutes:02d}:{secs:02d}"                        
-            else: 
-                elapsed_time = "00:00:00"
+            elapsed_time = "00:00:00"
     else:
         elapsed_time = "00:00:00"
+
+
+
+
+
+
+
     st.markdown(
         f"""
         <div style="text-align: left;">
