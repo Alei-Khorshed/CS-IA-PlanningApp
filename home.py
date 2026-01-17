@@ -300,11 +300,6 @@ if len(selected_rows) > 0:
 else:
     st.write("Please click a row in the table to select a task.")
 
-
-st.markdown("## **My Goal Planning**")
-# Read data for Goal points from the database into a DataFrame and display it
-df = pd.read_sql("SELECT * FROM GoalPoints", conn)
-st.write(df)
     
 conn.close()
 st.rerun()
