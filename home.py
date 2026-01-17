@@ -172,8 +172,9 @@ def goal_timer():
         secs = seconds % 60
         elapsed_time = f"{hours:02d}:{minutes:02d}:{secs:02d}"        
     else:
-        #current_time = ""
-        elapsed_time = "00:00:00"
+        # Check if first run
+        if st.session_state.gStarttime=="":
+            elapsed_time = "00:00:00"
     st.markdown(
         f"""
         <div style="text-align: left;">
