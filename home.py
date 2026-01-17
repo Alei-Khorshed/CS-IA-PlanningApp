@@ -74,31 +74,30 @@ else:
     )    
 
 
-# Get no of pending and completed tasks
+# Get no of pending tasks
 df_TasksCount = pd.read_sql("SELECT Count(task_id) as total FROM Task Where status='PENDING' ", conn)
 
 if not df_TasksCount.empty:
     task_row = df_TasksCount.iloc[0]
     st.session_state.gNoTasksPending = int(task_row['total'])
 
-df_TasksCount = pd.read_sql("SELECT Count(task_id) as total FROM Task Where status='COMPLETED' ", conn)
+# Get no of completed tasks based on date for today
+df_TasksCount = pd.read_sql("SELECT Count(task_id) as total FROM Task WHERE status='COMPLETED' AND date_completed = '" + todaygoaldate + "'" ,conn) 
 if not df_TasksCount.empty:
     task_row = df_TasksCount.iloc[0]
     st.session_state.gNoTasksCompleted = int(task_row['total'])
 
-
-
 # Calculate Progress Points by multiplying each task difficulty by 1, 2 or 3 for all completed tasks today
-#df_ProgressPoints = pd.read_sql("SELECT * FROM Task WHERE status='COMPLETED' AND date_completed = ?", conn, params=[todaygoaldate])
-st.write("SELECT * FROM Task WHERE status='COMPLETED' AND date_completed = '" + todaygoaldate + "'")
 df_ProgressPoints = pd.read_sql("SELECT * FROM Task WHERE status='COMPLETED' AND date_completed = '" + todaygoaldate + "'" ,conn) 
 
 if not df_ProgressPoints.empty:
-    st.write(df_ProgressPoints)
+    difficulty_map = {"Easy": 1, "Medium": 2, "Hard": 3}
+    total_points = df_ProgressPoints['difficult'].map(difficulty_map).sum()
+    st.session_state.gProgresspoints = total_points
 else:
-    st.write("No completed tasks")
-    st.write(df_ProgressPoints)
+    st.session_state.gProgresspoints = 0
 
+# Display buttons for start and stop working
 
 st.divider()
 # Create 3 equal-width columns
