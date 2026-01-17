@@ -174,8 +174,8 @@ with col5:
 
 
 # Display Status of current goal planning
-# Create 4 columns
-col1, col2, col3, col4 = st.columns(4)
+# Create 5 columns
+col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
     DisplayNumber("Current Activity", st.session_state.gCurrentActivity)
@@ -195,6 +195,8 @@ with col3:
 with col4:
     goal_timer()
 
+with col5:
+    st.write("")
 
 
 
