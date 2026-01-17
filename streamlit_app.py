@@ -2,18 +2,6 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 
-#st.markdown("""
-#    <style>
-#           .block-container {
-#                padding-top: 1rem;
-#                padding-bottom: 0rem;
-#                padding-left: 5rem;
-#                padding-right: 5rem;
-#            }
-#    </style>
-#    """, unsafe_allow_html=True)
-
-
 if "gCurrentUser" not in st.session_state:
     st.session_state.gCurrentUser = 1
 
@@ -40,6 +28,10 @@ if "gGoalpoints" not in st.session_state:
 
 if "gProgresspoints" not in st.session_state:
     st.session_state.gProgresspoints = 0
+
+if "gProgressPerc" not in st.session_state:
+    st.session_state.gProgressPerc = 0
+
 
 if "gNoTasksPending" not in st.session_state:
     st.session_state.gNoTasksPending = 0

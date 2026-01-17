@@ -97,6 +97,13 @@ if not df_ProgressPoints.empty:
 else:
     st.session_state.gProgresspoints = 0
 
+# Calculate Goal Progress Perc %
+if st.session_state.gGoalpoints!= 0:
+    st.session_state.gProgressPerc = round(st.session_state.gProgresspoints / st.session_state.gGoalpoints,2)
+else:
+    st.session_state.gProgressPerc = 0
+
+
 # Display buttons for start and stop working
 
 st.divider()
