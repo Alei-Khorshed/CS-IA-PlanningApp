@@ -193,17 +193,16 @@ with col1:
     DisplayNumber("Goal Points", st.session_state.gGoalpoints)
 
 with col2:
-    DisplayNumber("Progress Points", st.session_state.gProgresspoints)
-
-with col3:
-    DisplayNumber("Progress %", st.session_state.gProgressPerc )
-
-with col4:
     DisplayNumber("Pending Tasks", st.session_state.gNoTasksPending)
 
-with col5:
+with col3:
     DisplayNumber("Completed Tasks", st.session_state.gNoTasksCompleted)
 
+with col4:
+    DisplayNumber("Progress Points", st.session_state.gProgresspoints)
+
+with col5:
+    DisplayNumber("Progress %", st.session_state.gProgressPerc )
 
 # Display Status of current goal planning
 # Create 5 columns
@@ -228,7 +227,8 @@ with col4:
     goal_timer()
 
 with col5:    
-    st.info("GOAL COMPLETED")
+    if st.session_state.gProgressPerc >= 1:
+        st.success("GOAL COMPLETED")
 
 
 st.markdown("## **My Tasks**")
