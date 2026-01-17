@@ -17,11 +17,11 @@ MyDB = "CS IA DB.db"
 conn = sql.connect(MyDB)
 
 
-st.markdown("## **My Tasks**")
+#st.markdown("## **My Tasks**")
 # Read and display Tasks
-df_task = pd.read_sql("SELECT * FROM Task", conn)
-task_titles = df_task['title'].tolist()
-st.write(df_task)
+#df_task = pd.read_sql("SELECT * FROM Task", conn)
+#task_titles = df_task['title'].tolist()
+#st.write(df_task)
 
 st.markdown("## **My Goal Planning**")
 # Read data for Goal points from the database into a DataFrame and display it

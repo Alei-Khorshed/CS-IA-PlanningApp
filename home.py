@@ -26,7 +26,6 @@ st.markdown(
 )
 
 
-
 # Create DB Connection 
 MyDB = "CS IA DB.db"
 
@@ -145,7 +144,6 @@ with col5:
 
 
 
-
 def DisplayNumber(label, value):
     # Define a function to display a small title and a large bold dark blue number  
     st.markdown(
@@ -233,16 +231,9 @@ with col5:
     st.write("")
 
 
-
-
-if "first_load" not in st.session_state:
-    st.session_state.first_load = "YES"
-
 st.markdown("## **My Tasks**")
 # Read and display Tasks that are pending
 df_task = pd.read_sql("SELECT * FROM Task Where status='PENDING' ", conn)
-#task_titles = df_task['title'].tolist()
-#st.write(df_task)
 
 
 # Display the Tasks in a dataframe with ROW SELECTION enabled
@@ -276,8 +267,6 @@ if len(selected_rows) > 0:
         st.rerun() # Refresh page to show updated DB data
 else:
     st.write("Please click a row in the table to select a task.")
-
-
 
 
 st.markdown("## **My Goal Planning**")
