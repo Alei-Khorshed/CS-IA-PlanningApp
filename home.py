@@ -259,7 +259,7 @@ if len(selected_rows) > 0:
     if st.button("Mark Task Completed"):
         # 4. Execute the Update Query
         cursor = conn.cursor()
-        cursor.execute("UPDATE Task SET status = 'COMPLETED' WHERE task_id = ?", (int(task_id),))
+        cursor.execute("UPDATE Task SET status = 'COMPLETED', date_completed='" + todaygoaldate + "' WHERE task_id = ?", (int(task_id),))
         conn.commit()
         
         st.success(f"Task '{task_title}' marked as completed!")
