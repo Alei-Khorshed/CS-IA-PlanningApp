@@ -115,8 +115,10 @@ with col1:
     if st.button("Start Working"):
         if st.session_state.gGoalpoints != 0:
             st.session_state.gFlagWorking = True
-            st.session_state.gCurrentActivity = "WORKING"   
-            st.session_state.gStarttime = dt.now()
+            st.session_state.gCurrentActivity = "WORKING" 
+            # Check if first time to start working to get start time  
+            if st.session_state.gStarttime == "":
+                st.session_state.gStarttime = dt.now()
             st.session_state.gEndtime = ""
         else:
             st.error("You need to first add a goal point for today. Goto Goal Planning")
