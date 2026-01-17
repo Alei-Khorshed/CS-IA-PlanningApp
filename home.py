@@ -161,7 +161,7 @@ def DisplayNumber(label, value):
     )
 
 
-@st.fragment(run_every="60s")
+@st.fragment(run_every="10s")
 def goal_timer():
     if st.session_state.gFlagWorking and st.session_state.gStarttime:
         #current_time = dt.now().strftime("%H:%M:%S")
