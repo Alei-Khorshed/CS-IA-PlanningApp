@@ -89,7 +89,7 @@ if not df_TasksCount.empty:
 
 
 # Calculate Progress Points by multiplying each task difficulty by 1, 2 or 3 for all completed tasks today
-df_ProgressPoints = pd.read_sql("SELECT * FROM Task WHERE status='COMPLETED' AND date = ?", conn, params=[todaygoaldate])
+df_ProgressPoints = pd.read_sql("SELECT * FROM Task WHERE status='COMPLETED' AND date_completed = ?", conn, params=[todaygoaldate])
 
 if not df_ProgressPoints.empty:
     st.write(df_ProgressPoints)
