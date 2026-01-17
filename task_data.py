@@ -77,7 +77,6 @@ if st.button("Save and Exit"):
 if st.button("Reset All Tasks"):
     # Reset all Tasks
     cur = conn.cursor()
-    cur.execute("Delete from GoalPoints")
     cur.execute("UPDATE Task SET status = 'PENDING', date_completed='' ")    
     conn.commit() 
     conn.close()
