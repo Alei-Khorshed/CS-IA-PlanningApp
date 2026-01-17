@@ -100,8 +100,7 @@ else:
 # Calculate Goal Progress Perc %
 if st.session_state.gGoalpoints!= 0:
     ProgPerc = st.session_state.gProgresspoints / st.session_state.gGoalpoints
-    st.write(ProgPerc)
-    st.session_state.gProgressPerc = round(st.session_state.gProgresspoints / st.session_state.gGoalpoints,2)
+    st.session_state.gProgressPerc = round(st.session_state.gProgresspoints / st.session_state.gGoalpoints,2)*100
 else:
     st.session_state.gProgressPerc = 0
 
