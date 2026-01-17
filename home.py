@@ -73,6 +73,24 @@ else:
         unsafe_allow_html=True
     )    
 
+
+# Get no of pending and completed tasks
+df_TasksCount = pd.read_sql("SELECT Count(task_id) as total FROM Task Where status='PENDING' ", conn)
+
+if not df_TasksCount.empty:
+    task_row = df_TasksCount.iloc[0]
+    st.session_state.gNoTasksPending = int(task_row['total'])
+
+df_TasksCount = pd.read_sql("SELECT Count(task_id) as total FROM Task Where status='COMPLETED' ", conn)
+if not df_TasksCount.empty:
+    task_row = df_TasksCount.iloc[0]
+    st.session_state.gNoTasksCompleted = int(task_row['total'])
+
+
+
+
+
+
 st.divider()
 # Create 3 equal-width columns
 col1, col2, col3, col4, col5 = st.columns(5)
