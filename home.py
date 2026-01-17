@@ -100,7 +100,7 @@ if not df_GoalPointsToday.empty:
     st.markdown(
         f"""
         <div style="display: flex; align-items: baseline; gap: 15px;">
-            <span style="font-size: 30px; font-weight: bold; color: #000000;">My Goal:</span>
+            <span style="font-size: 30px; font-weight: bold; color: #000000;">My Goal1:</span>
             <span style="font-size: 30px; font-weight: bold; color: #003366;">{goal_desc}</span>
         </div>
         """, 
