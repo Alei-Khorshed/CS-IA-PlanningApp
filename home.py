@@ -128,7 +128,6 @@ with col2:
             st.session_state.gFlagWorking = False
             st.session_state.gCurrentActivity = "IDLE"    
             st.session_state.gEndtime = dt.now()  
-            st.session_state.gStarttime = ""
         else:
             st.error("You need to first add a goal point for today. Goto Goal Planning")
      
@@ -161,7 +160,7 @@ def DisplayNumber(label, value):
     )
 
 
-@st.fragment(run_every="10s")
+@st.fragment(run_every="1s")
 def goal_timer():
     if st.session_state.gFlagWorking and st.session_state.gStarttime:
         #current_time = dt.now().strftime("%H:%M:%S")
