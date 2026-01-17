@@ -59,9 +59,15 @@ with st.form("data_form", clear_on_submit=True):
 
 
 if st.button("Save and Exit"):
-    # Save logic here
+    # Return to home page
     st.switch_page("home.py")
 
 
-
+if st.button("Clear All Goals"):
+    # Delete all goals
+    cur = conn.cursor()
+    cur.executemany("Delete * from GoalPoints")
+    conn.commit() 
+    conn.close()
+    st.rerun()
 
