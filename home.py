@@ -118,7 +118,7 @@ with col1:
             st.session_state.gCurrentActivity = "WORKING"   
             st.session_state.gStarttime = dt.now()
         else:
-            st.warning("You need to first add a goal point for today. Goto Goal Planning")
+            st.error("You need to first add a goal point for today. Goto Goal Planning")
         
 
 with col2:
@@ -227,8 +227,8 @@ with col3:
 with col4:
     goal_timer()
 
-with col5:
-    st.write("")
+with col5:    
+    st.info("GOAL COMPLETED")
 
 
 st.markdown("## **My Tasks**")
