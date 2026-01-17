@@ -88,6 +88,41 @@ if not df_TasksCount.empty:
 
 
 
+# Calculate Progress Points by multiplying each task difficulty by 1, 2 or 3 for all completed tasks today
+df_GoalPointsToday = pd.read_sql("SELECT * FROM GoalPoints WHERE date = ?", conn, params=[todaygoaldate])
+
+if not df_GoalPointsToday.empty:
+    goal_row = df_GoalPointsToday.iloc[0]
+
+    st.session_state.gGoalpoints = int(goal_row['targetpoints'])
+    st.session_state.gProgresspoints = int(goal_row['progresspoints'])
+    goal_desc = goal_row['description']
+    st.markdown(
+        f"""
+        <div style="display: flex; align-items: baseline; gap: 15px;">
+            <span style="font-size: 30px; font-weight: bold; color: #000000;">My Goal:</span>
+            <span style="font-size: 30px; font-weight: bold; color: #003366;">{goal_desc}</span>
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )
+
+else:
+    # 5. Handle the case where no row exists for today
+    #st.status("No goal set for today yet.")
+    st.session_state.gGoalpoints = 0
+    st.session_state.gProgresspoints = 0
+    goal_desc = "NONE"
+    st.markdown(
+        f"""
+        <div style="display: flex; align-items: baseline; gap: 15px;">
+            <span style="font-size: 30px; font-weight: bold; color: #000000;">My Goal:</span>
+            <span style="font-size: 30px; font-weight: bold; color: #003366;">{goal_desc}</span>
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )    
+
 
 
 
