@@ -77,6 +77,8 @@ else:
 # Get no of pending and completed tasks
 df_TasksCount = pd.read_sql("SELECT Count(task_id) as total FROM Task Where status='PENDING' ", conn)
 
+st.write(df_TasksCount)
+
 if not df_TasksCount.empty:
     task_row = df_TasksCount.iloc[0]
     st.session_state.gNoTasksPending = int(task_row['total'])
