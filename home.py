@@ -87,12 +87,16 @@ if not df_TasksCount.empty:
     st.session_state.gNoTasksCompleted = int(task_row['total'])
 
 # Calculate Progress Points by multiplying each task difficulty by 1, 2 or 3 for all completed tasks today
-df_ProgressPoints = pd.read_sql("SELECT * FROM Task WHERE status='COMPLETED' AND date_completed = '" + todaygoaldate + "'" ,conn) 
 
-if not df_ProgressPoints.empty:
-    difficulty_map = {"Easy": 1, "Medium": 2, "Hard": 3}
-    total_points = df_ProgressPoints['difficulty'].map(difficulty_map).sum()
-    st.session_state.gProgresspoints = total_points
+if st.session_state.gGoalpoints!= 0:
+    df_ProgressPoints = pd.read_sql("SELECT * FROM Task WHERE status='COMPLETED' AND date_completed = '" + todaygoaldate + "'" ,conn) 
+
+    if not df_ProgressPoints.empty:
+        difficulty_map = {"Easy": 1, "Medium": 2, "Hard": 3}
+        total_points = df_ProgressPoints['difficulty'].map(difficulty_map).sum()
+        st.session_state.gProgresspoints = total_points
+    else:
+        st.session_state.gProgresspoints = 0
 else:
     st.session_state.gProgresspoints = 0
 
