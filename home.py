@@ -123,6 +123,7 @@ with col1:
                 st.session_state.gStarttimelast = st.session_state.gStarttime
             else:
                 st.session_state.gStarttimelast = dt.now()
+                st.session_state.gStarttime = dt.now()  # This can be removed to keep start time of whole session fixed
     
         else:
             st.error("You need to first add a goal point for today. Goto Goal Planning")
