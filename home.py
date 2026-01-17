@@ -62,6 +62,16 @@ else:
     #st.status("No goal set for today yet.")
     st.session_state.gGoalpoints = 0
     st.session_state.gProgresspoints = 0
+    goal_desc = "NONE"
+    st.markdown(
+        f"""
+        <div style="display: flex; align-items: baseline; gap: 15px;">
+            <span style="font-size: 30px; font-weight: bold; color: #000000;">My Goal:</span>
+            <span style="font-size: 30px; font-weight: bold; color: #003366;">{goal_desc}</span>
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )    
 
 st.divider()
 # Create 3 equal-width columns
@@ -98,15 +108,6 @@ with col4:
 with col5:
     if st.button("Goal Planning"):
         st.switch_page("goal_planning.py") 
-
-
-
-
-# Determine current goal status status
-#if st.session_state.gFlagWorking == False:
-#    st.session_state.gCurrentActivity = "NONE"    
-#else:
-#    st.session_state.gCurrentActivity = "WORKING"
 
 
 
@@ -152,6 +153,26 @@ def goal_timer():
 
 st.divider()
 
+
+# Create 5 columns
+col1, col2, col3, col4, col5 = st.columns(5)
+
+with col1:
+    DisplayNumber("Goal Points", st.session_state.gGoalpoints)
+
+with col2:
+    DisplayNumber("Progress Points", st.session_state.gProgresspoints)
+
+with col3:
+    DisplayNumber("Progress %", "0%")
+
+with col4:
+    DisplayNumber("Pending Tasks", st.session_state.gNoTasksPending)
+
+with col5:
+    DisplayNumber("Completed Tasks", st.session_state.gNoTasksCompleted)
+
+
 # Display Status of current goal planning
 # Create 4 columns
 col1, col2, col3, col4 = st.columns(4)
@@ -176,24 +197,6 @@ with col4:
 
 
 
-
-# Create 5 columns
-col1, col2, col3, col4, col5 = st.columns(5)
-
-with col1:
-    DisplayNumber("Goal Points", st.session_state.gGoalpoints)
-
-with col2:
-    DisplayNumber("Progress Points", st.session_state.gProgresspoints)
-
-with col3:
-    DisplayNumber("Progress %", "0%")
-
-with col4:
-    DisplayNumber("Pending Tasks", st.session_state.gNoTasksPending)
-
-with col5:
-    DisplayNumber("Completed Tasks", st.session_state.gNoTasksCompleted)
 
 
 if "first_load" not in st.session_state:
