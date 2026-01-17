@@ -258,7 +258,7 @@ with col4:
     goal_timer()
 
 with col5:    
-    if st.session_state.gProgressPerc >= 1:
+    if st.session_state.gProgressPerc >= 100:
         st.success("GOAL COMPLETED")
 
 
