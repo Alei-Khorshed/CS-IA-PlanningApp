@@ -177,12 +177,14 @@ def goal_timer():
     st.markdown(
         f"""
         <div style="text-align: left;">
-            <p style="font-size: 18px; font-weight: 400; color: #000000; margin-bottom: 0px;">Session Time</p>
-            <p style="font-size: 30px; font-weight: bold; color: #003366; margin-top: -10px; font-family: monospace;">{elapsed_time}</p>
+            <p style="font-size: 18px; font-weight: 400; color: #666; margin-bottom: 0px;">Session Time</p>
+            <p style="font-size: 30px; font-weight: bold; color: #003366; margin-top: -10px;">{elapsed_time}</p>
         </div>
         """,
         unsafe_allow_html=True
     )
+            #<p style="font-size: 18px; font-weight: 400; color: #000000; margin-bottom: 0px;">Session Time</p>
+            #<p style="font-size: 30px; font-weight: bold; color: #003366; margin-top: -10px; font-family: monospace;">{elapsed_time}</p>
 
 
 
