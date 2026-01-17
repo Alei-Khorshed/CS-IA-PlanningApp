@@ -66,7 +66,7 @@ if st.button("Save and Exit"):
 if st.button("Clear All Goals"):
     # Delete all goals
     cur = conn.cursor()
-    cur.executemany("Delete * from GoalPoints")
+    cur.execute("Delete * from GoalPoints")
     conn.commit() 
     conn.close()
     st.rerun()
