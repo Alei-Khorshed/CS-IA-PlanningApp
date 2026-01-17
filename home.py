@@ -165,8 +165,8 @@ def DisplayNumber(label, value):
 @st.fragment(run_every="1s")
 def goal_timer():
     if st.session_state.gStarttime:
-        # Check if first run
-        if st.session_state.gStarttime != "":
+        # Check if working
+        if st.session_state.gFlagWorking:
             #current_time = dt.now().strftime("%H:%M:%S")
             diff = dt.now() - st.session_state.gStarttime
             # Format the difference into Hours:Minutes:Seconds        
@@ -176,7 +176,17 @@ def goal_timer():
             secs = seconds % 60
             elapsed_time = f"{hours:02d}:{minutes:02d}:{secs:02d}"        
         else:
-            elapsed_time = "00:00:00"
+            # Check if not first run and if not then display last elapsed time
+            if st.session_state.gStarttime != "":
+                diff = st.session_state.gEndtime - st.session_state.gStarttime
+                # Format the difference into Hours:Minutes:Seconds        
+                seconds = int(diff.total_seconds()) # total_seconds() gives us the duration
+                hours = seconds // 3600
+                minutes = (seconds % 3600) // 60
+                secs = seconds % 60
+                elapsed_time = f"{hours:02d}:{minutes:02d}:{secs:02d}"                        
+            else: 
+                elapsed_time = "00:00:00"
     else:
         elapsed_time = "00:00:00"
     st.markdown(
