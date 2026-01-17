@@ -99,6 +99,8 @@ else:
 
 # Calculate Goal Progress Perc %
 if st.session_state.gGoalpoints!= 0:
+    ProgPerc = st.session_state.gProgresspoints / st.session_state.gGoalpoints
+    st.write(ProgPerc)
     st.session_state.gProgressPerc = round(st.session_state.gProgresspoints / st.session_state.gGoalpoints,2)
 else:
     st.session_state.gProgressPerc = 0
@@ -197,7 +199,7 @@ with col2:
     DisplayNumber("Progress Points", st.session_state.gProgresspoints)
 
 with col3:
-    DisplayNumber("Progress %", "0%")
+    DisplayNumber("Progress %", st.session_state.gProgressPerc )
 
 with col4:
     DisplayNumber("Pending Tasks", st.session_state.gNoTasksPending)
