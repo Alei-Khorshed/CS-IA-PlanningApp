@@ -94,7 +94,7 @@ df_ProgressPoints = pd.read_sql("SELECT * FROM Task WHERE status='COMPLETED' AND
 if not df_ProgressPoints.empty:
     st.write(df_ProgressPoints)
 else:
-    st.wrtie("No completed tasks")
+    st.write("No completed tasks")
 
 
 st.divider()
