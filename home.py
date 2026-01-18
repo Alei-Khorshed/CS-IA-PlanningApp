@@ -264,7 +264,7 @@ with col4:
 
 with col5:    
     if st.session_state.gProgressPerc >= 100:
-        DisplayNumber("Goal Status",st.success("GOAL COMPLETED"))
+        DisplayNumber("Goal Status","COMPLETED")
         
     else:
         DisplayNumber("Goal Status","IN PROGRESS")
