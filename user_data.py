@@ -19,7 +19,7 @@ with st.form("data_form", clear_on_submit=True):
 
     firstname = st.text_input("First Name", key="txtFirstName")
     lastname = st.text_input("Last Name", key="txtLastName")
-    dob = st.text_input("Date of Birth", key="txtdob")
+    dateofbirth = st.text_input("Date of Birth", key="txtdob")
     username = st.text_input("User Name", key="txtUserName")
     password = st.text_input("Password", key="txtPassword")
     
@@ -28,12 +28,12 @@ with st.form("data_form", clear_on_submit=True):
 
     if submit:
         # Create a DataFrame for the new record
-        data_record = [{"user_id":0,   "firstname": firstname, "lastname": lastname, "dateofbirth": dob, "username":username, "password":password }]
+        data_record = [{"user_id":0,   "firstname": firstname, "lastname": lastname, "dateofbirth": dateofbirth, "username":username, "password":password }]
         df_data = pd.DataFrame(data_record)
         
 
         cur = conn.cursor()
-        cur.executemany("INSERT INTO User VALUES(NULL,:firstname, :lastname, :datofbirth, :username, :password)", data_record)
+        cur.executemany("INSERT INTO User VALUES(NULL,:firstname, :lastname, :dateofbirth, :username, :password)", data_record)
         conn.commit() 
 
         conn.close()
