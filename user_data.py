@@ -33,7 +33,7 @@ with st.form("data_form", clear_on_submit=True):
         
 
         cur = conn.cursor()
-        cur.executemany("INSERT INTO User VALUES(NULL,:firstname, :lastname, :datofbirth, :username, :password", data_record)
+        cur.executemany("INSERT INTO User VALUES(NULL,:firstname, :lastname, :datofbirth, :username, :password)", data_record)
         conn.commit() 
 
         conn.close()
