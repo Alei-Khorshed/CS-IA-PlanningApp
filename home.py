@@ -180,7 +180,7 @@ def DisplayNumber(label, value):
 def goal_timer():
     if st.session_state.gStarttime:
         # Check if first run 
-        if st.session_state.gStarttime !="0":
+        if st.session_state.gStarttime !="00:00:00":
             # Check if working
             if st.session_state.gFlagWorking:
                 diff = dt.now() - st.session_state.gStarttimelast
@@ -243,21 +243,21 @@ with col1:
 
 with col2:
     if st.session_state.gStarttime:
-        if st.session_state.gStarttime!="0":
+        if st.session_state.gStarttime!="00:00:00":
             DisplayNumber("Start Time", st.session_state.gStarttime.strftime("%H:%M:%S"))
         else:
-            DisplayNumber("Start Time", "0")            
+            DisplayNumber("Start Time", "00:00:00")            
     else:
-        DisplayNumber("Start Time","0")
+        DisplayNumber("Start Time","00:00:00")
 
 with col3:
     if st.session_state.gEndtime:
-        if st.session_state.gEndtime !="0":
+        if st.session_state.gEndtime !="00:00:00":
             DisplayNumber("End Time", st.session_state.gEndtime.strftime("%H:%M:%S"))
         else:
-            DisplayNumber("End Time", "0")
+            DisplayNumber("End Time", "00:00:00")
     else:
-        DisplayNumber("End Time","0")
+        DisplayNumber("End Time","00:00:000")
 
 with col4:
     goal_timer()

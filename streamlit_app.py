@@ -18,13 +18,13 @@ if "gCurrentActivity" not in st.session_state:
     st.session_state.gCurrentActivity = "IDLE"
 
 if "gStarttime" not in st.session_state:
-    st.session_state.gStarttime = "0"
+    st.session_state.gStarttime = "00:00:00"
 
 if "gStarttimelast" not in st.session_state:
-    st.session_state.gStarttimelast = "0"
+    st.session_state.gStarttimelast = "00:00:00"
 
 if "gEndtime" not in st.session_state:
-    st.session_state.gEndtime = "0"
+    st.session_state.gEndtime = "00:00:00"
 
 if "gTotalSessiontime" not in st.session_state:
     st.session_state.gTotalSessiontime = ""
