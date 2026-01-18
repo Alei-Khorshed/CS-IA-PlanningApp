@@ -257,7 +257,7 @@ with col3:
         else:
             DisplayNumber("End Time", "00:00:00")
     else:
-        DisplayNumber("End Time","00:00:000")
+        DisplayNumber("End Time","00:00:00")
 
 with col4:
     goal_timer()
