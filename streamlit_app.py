@@ -46,6 +46,10 @@ if "gNoTasksCompleted" not in st.session_state:
     st.session_state.gNoTasksCompleted = 0
 
 
+
+st.sidebar.markdown(f"### 👤 User: **{st.session_state.gCurrentUserName}**")
+st.sidebar.divider() # Adds a horizontal line
+
 # Define the pages
 home_page = st.Page("home.py", title="Home", icon="🏠", default=True)
 goal_planning = st.Page("goal_planning.py", title="Goal Planning", icon="📊")
