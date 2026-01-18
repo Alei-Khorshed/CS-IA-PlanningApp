@@ -243,7 +243,7 @@ with col1:
 
 with col2:
     if st.session_state.gStarttime:
-        if st.session_state.gStarttime!="":
+        if st.session_state.gStarttime!=" ":
             DisplayNumber("Start Time", st.session_state.gStarttime.strftime("%H:%M:%S"))
         else:
             DisplayNumber("Start Time", " ")            
@@ -252,10 +252,10 @@ with col2:
 
 with col3:
     if st.session_state.gEndtime:
-        if st.session_state.gEndtime !="":
+        if st.session_state.gEndtime !=" ":
             DisplayNumber("End Time", st.session_state.gEndtime.strftime("%H:%M:%S"))
         else:
-            DisplayNumber("End Time", "")
+            DisplayNumber("End Time", " ")
     else:
         DisplayNumber("End Time"," ")
 
