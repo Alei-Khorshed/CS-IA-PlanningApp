@@ -180,7 +180,7 @@ def DisplayNumber(label, value):
 def goal_timer():
     if st.session_state.gStarttime:
         # Check if first run 
-        if st.session_state.gStarttime !="":
+        if st.session_state.gStarttime !=" ":
             # Check if working
             if st.session_state.gFlagWorking:
                 diff = dt.now() - st.session_state.gStarttimelast
