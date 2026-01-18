@@ -111,8 +111,8 @@ else:
 # Display buttons for start and stop working
 
 st.divider()
-# Create 3 equal-width columns
-col1, col2, col3, col4, col5 = st.columns(5)
+# Create 6 equal-width columns
+col1, col2, col3, col4, col5, col6 = st.columns(6)
 
 
 with col1:
@@ -144,17 +144,22 @@ with col2:
      
 
 with col3:
+    if st.button("Goal Planning"):
+        st.switch_page("goal_planning.py") 
+
+
+with col4:
     if st.button("Subject Data"):
         st.switch_page("subject_data.py") 
 
-with col4:
+with col5:
     if st.button("Task Data"):
         st.switch_page("task_data.py") 
 
 
-with col5:
-    if st.button("Goal Planning"):
-        st.switch_page("goal_planning.py") 
+with col6:
+    if st.button("User Data"):
+        st.switch_page("user_data.py") 
 
 
 
