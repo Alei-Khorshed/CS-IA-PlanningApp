@@ -57,7 +57,7 @@ user_page = st.Page("user_data.py", title="User Data", icon="➕")
 st.write(st.session_state.gCurrentUsername)
 
 # Set up navigation
-pg = st.navigation([home_page, goal_planning,subject_page, task_page,userpage])
+pg = st.navigation([home_page, goal_planning,subject_page, task_page,user_page])
 
 # Run the selected page
 pg.run()
