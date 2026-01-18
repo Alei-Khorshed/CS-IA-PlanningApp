@@ -199,11 +199,6 @@ def goal_timer():
         elapsed_time = "00:00:00"
 
 
-
-
-
-
-
     st.markdown(
         f"""
         <div style="text-align: left;">
@@ -251,9 +246,9 @@ with col2:
         if st.session_state.gStarttime!="":
             DisplayNumber("Start Time", st.session_state.gStarttime.strftime("%H:%M:%S"))
         else:
-            DisplayNumber("Start Time", "")            
+            DisplayNumber("Start Time", " ")            
     else:
-        DisplayNumber("Start Time","")
+        DisplayNumber("Start Time"," ")
 
 with col3:
     if st.session_state.gEndtime:
@@ -262,7 +257,7 @@ with col3:
         else:
             DisplayNumber("End Time", "")
     else:
-        DisplayNumber("End Time","")
+        DisplayNumber("End Time"," ")
 
 with col4:
     goal_timer()
