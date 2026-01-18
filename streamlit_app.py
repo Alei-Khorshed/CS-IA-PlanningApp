@@ -49,7 +49,7 @@ if "gNoTasksCompleted" not in st.session_state:
 
 
 # Define the pages
-home_page = st.Page("home.py", title="Home", icon="🏠", default=True)
+home_page = st.Page("home.py", title="Home", default=True)
 goal_planning = st.Page("goal_planning.py", title="Goal Planning")
 subject_page = st.Page("subject_data.py", title="Subject Data" )
 task_page = st.Page("task_data.py", title="Task Data")

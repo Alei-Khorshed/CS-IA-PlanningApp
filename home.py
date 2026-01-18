@@ -10,7 +10,7 @@ st.title("Questmania Planning App")
 
 
 # Displaying at the top of the sidebar
-st.sidebar.markdown("# Home 🏠")
+st.sidebar.markdown("# Home")
 
 # Get today's date in a specific format (day, month year)
 today = dt.now().strftime("%d %B %Y")
