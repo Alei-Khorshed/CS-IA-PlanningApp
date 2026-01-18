@@ -19,7 +19,7 @@ with st.form("data_form", clear_on_submit=True):
 
     firstname = st.text_input("First Name", key="txtFirstName")
     lastname = st.text_input("Last Name", key="txtLastName")
-    dob = st.date_input("Date of Birth", value="today",format=st.session_state.gDateFormat,key="txtDOB")
+    dob = st.date_input("Date of Birth", format=st.session_state.gDateFormat,key="txtDOB")
     username = st.text_input("User Name", key="txtUserName")
     password = st.text_input("Password", key="txtPassword")
     
