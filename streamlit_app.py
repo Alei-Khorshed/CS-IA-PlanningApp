@@ -5,8 +5,8 @@ st.set_page_config(layout="wide")
 if "gCurrentUser" not in st.session_state:
     st.session_state.gCurrentUser = 1
 
-if "gCurrentUsername" not in st.session_state:
-    st.session_state.gCurrentUsername = "Alei Khorshed"
+if "gCurrentUserName" not in st.session_state:
+    st.session_state.gCurrentUserName = "Alei Khorshed"
 
 if "gDateFormat" not in st.session_state:
     st.session_state.gDateFormat = "DD/MM/YYYY"
@@ -54,7 +54,7 @@ task_page = st.Page("task_data.py", title="Task Data", icon="➕")
 user_page = st.Page("user_data.py", title="User Data", icon="➕")
 
 
-st.write(st.session_state.gCurrentUsername)
+
 
 # Set up navigation
 pg = st.navigation([home_page, goal_planning,subject_page, task_page,user_page])
