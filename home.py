@@ -6,7 +6,7 @@ from datetime import datetime as dt
 
 # Home page content
 #st.write("IBDP - Computer Science - IA")
-st.title("Computer Science IA - Alei Khorshed's Planning App")
+st.title("Alei Khorshed's Planning App")
 
 
 # Displaying at the top of the sidebar
