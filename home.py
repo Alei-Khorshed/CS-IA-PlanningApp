@@ -6,7 +6,7 @@ from datetime import datetime as dt
 
 # Home page content
 #st.write("IBDP - Computer Science - IA")
-st.title("Alei Khorshed's Planning App")
+st.title("Questmania Planning App")
 
 
 # Displaying at the top of the sidebar
@@ -267,7 +267,7 @@ with col5:
         DisplayNumber("Goal Status","COMPLETED")
         
     else:
-        DisplayNumber("Goal Status","IN PROGRESS")
+        DisplayNumber("Goal Status","PENDING")
 
 st.divider()
 

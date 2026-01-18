@@ -50,17 +50,18 @@ if "gNoTasksCompleted" not in st.session_state:
 
 # Define the pages
 home_page = st.Page("home.py", title="Home", icon="🏠", default=True)
-goal_planning = st.Page("goal_planning.py", title="Goal Planning", icon="📊")
-subject_page = st.Page("subject_data.py", title="Subject Data", icon="➕")
-task_page = st.Page("task_data.py", title="Task Data", icon="➕")
-user_page = st.Page("user_data.py", title="User Data", icon="➕")
+goal_planning = st.Page("goal_planning.py", title="Goal Planning")
+subject_page = st.Page("subject_data.py", title="Subject Data" )
+task_page = st.Page("task_data.py", title="Task Data")
+user_page = st.Page("user_data.py", title="User Data")
 
 
-st.sidebar.markdown(f"### 👤 User: **{st.session_state.gCurrentUserName}**")
+st.sidebar.markdown(f"### User: **{st.session_state.gCurrentUserName}**")
 st.sidebar.divider() # Adds a horizontal line
 
 st.sidebar.write("ECOLINT - IB Diploma")
 st.sidebar.write("Computer Science - IA")
+st.sidebar.write("© 2025 Alei Khorshed")
 st.sidebar.divider() # Adds a horizontal line
 
 # Set up navigation
