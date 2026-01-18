@@ -264,7 +264,10 @@ with col4:
 
 with col5:    
     if st.session_state.gProgressPerc >= 100:
-        st.success("GOAL COMPLETED")
+        DisplayNumber("Goal Status",st.success("GOAL COMPLETED"))
+        
+    else:
+        DisplayNumber("Goal Status","IN PROGRESS")
 
 st.divider()
 
@@ -308,8 +311,8 @@ else:
 
 st.markdown("## **My COMPLETED Tasks**")
 # Read and display Tasks that are pending
-df_task = pd.read_sql("SELECT task_id, title, deadline, difficulty, status, date_completed FROM Task Where status='COMPLETED' ", conn)
-
+df_task_completed = pd.read_sql("SELECT task_id, title, deadline, difficulty, status, date_completed FROM Task Where status='COMPLETED' ", conn)
+st.write(df_task_completed)
 
 
 conn.close()
