@@ -167,7 +167,7 @@ def DisplayNumber(label, value):
     # Define a function to display a small title and a large bold dark blue number  
     st.markdown(
         f"""
-        <div style="text-align: left;">
+        <div style="text-align: left; background-color: #E3F2FD; padding: 15px; border-radius: 10px; border: 1px solid #BBDEFB;">
             <p style="font-size: 18px; font-weight: 400; color: #666; margin-bottom: 0px;">{label}</p>
             <p style="font-size: 30px; font-weight: bold; color: #003366; margin-top: -10px;">{value}</p>
         </div>
@@ -271,10 +271,11 @@ with col5:
     if st.session_state.gProgressPerc >= 100:
         st.success("GOAL COMPLETED")
 
+st.divider()
 
-st.markdown("## **My Tasks**")
+st.markdown("## **My PENDING Tasks**")
 # Read and display Tasks that are pending
-df_task = pd.read_sql("SELECT * FROM Task Where status='PENDING' ", conn)
+df_task = pd.read_sql("SELECT task_id, title, deadline, difficulty, status, date_completed FROM Task Where status='PENDING' ", conn)
 
 
 # Display the Tasks in a dataframe with ROW SELECTION enabled
@@ -309,7 +310,13 @@ if len(selected_rows) > 0:
 else:
     st.write("Please click a row in the table to select a task.")
 
-    
+
+st.markdown("## **My COMPLETED Tasks**")
+# Read and display Tasks that are pending
+df_task = pd.read_sql("SELECT task_id, title, deadline, difficulty, status, date_completed FROM Task Where status='COMPLETED' ", conn)
+
+
+
 conn.close()
 st.rerun()
 
