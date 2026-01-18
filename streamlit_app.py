@@ -47,8 +47,6 @@ if "gNoTasksCompleted" not in st.session_state:
 
 
 
-st.sidebar.markdown(f"### 👤 User: **{st.session_state.gCurrentUserName}**")
-st.sidebar.divider() # Adds a horizontal line
 
 # Define the pages
 home_page = st.Page("home.py", title="Home", icon="🏠", default=True)
@@ -57,11 +55,12 @@ subject_page = st.Page("subject_data.py", title="Subject Data", icon="➕")
 task_page = st.Page("task_data.py", title="Task Data", icon="➕")
 user_page = st.Page("user_data.py", title="User Data", icon="➕")
 
-
-
-
 # Set up navigation
 pg = st.navigation([home_page, goal_planning,subject_page, task_page,user_page])
+
+st.sidebar.markdown(f"### 👤 User: **{st.session_state.gCurrentUserName}**")
+st.sidebar.divider() # Adds a horizontal line
+
 
 # Run the selected page
 pg.run()
