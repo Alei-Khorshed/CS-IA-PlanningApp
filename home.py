@@ -308,7 +308,7 @@ if len(selected_rows) > 0:
 else:
     st.write("Please click a row in the table to select a task.")
 
-
+st.divider()
 st.markdown("## **My COMPLETED Tasks**")
 # Read and display Tasks that are pending
 df_task_completed = pd.read_sql("SELECT task_id, title, deadline, difficulty, status, date_completed FROM Task Where status='COMPLETED' ", conn)
