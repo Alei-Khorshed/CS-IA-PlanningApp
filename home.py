@@ -120,9 +120,9 @@ with col1:
         if st.session_state.gGoalpoints != 0:
             st.session_state.gFlagWorking = True
             st.session_state.gCurrentActivity = "WORKING" 
-            st.session_state.gEndtime = ""
+            st.session_state.gEndtime = " "
             # Check if first time to start working to get start time  
-            if st.session_state.gStarttime == "":
+            if st.session_state.gStarttime == " ":
                 st.session_state.gStarttime = dt.now()
                 st.session_state.gStarttimelast = st.session_state.gStarttime
             else:
