@@ -10,8 +10,6 @@ st.title("Alei Khorshed - Planning App")
 
 
 # Displaying at the top of the sidebar
-
-    
 st.sidebar.markdown("# Home 🏠")
 
 # Get today's date in a specific format (day, month year)
