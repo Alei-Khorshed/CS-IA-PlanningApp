@@ -17,7 +17,7 @@ MyDB = "CS IA DB.db"
 conn = sql.connect(MyDB)
 
 # Read the entire table into a DataFrame
-df = pd.read_sql("SELECT * FROM Task", conn)
+df = pd.read_sql("SELECT task_id,title,deadline,difficulty,status,date_completed FROM Task", conn)
 st.write(df)
 
 # Read subjects
