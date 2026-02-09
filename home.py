@@ -1,13 +1,12 @@
-import streamlit as st
-import pandas as pd
-import sqlite3 as sql
-import datetime as dt
+# Import libraries required for this page
+import streamlit as st    # main streamlit library 
+import pandas as pd       # pandas library for working and displaying with data 
+import sqlite3 as sql     # sqllite3 library to work with a sqllite database
+import datetime as dt     # datetime library to manage start and end of session
 from datetime import datetime as dt
 
 # Home page content
-#st.write("IBDP - Computer Science - IA")
 st.title("Questmania Planning App")
-
 
 # Displaying at the top of the sidebar
 st.sidebar.markdown("# Home")
@@ -29,20 +28,18 @@ st.markdown(
 # Create DB Connection 
 MyDB = "CS IA DB.db"
 
+# Set the variable name for my DB
 conn = sql.connect(MyDB)
 
-#cur = conn.cursor()
-#cur.execute("ALTER TABLE GoalPoints ADD COLUMN description TEXT")
-#conn.commit() 
 
 # Read information about todays GloalPoints 
-
 todaygoaldate = dt.now().strftime("%Y-%m-%d") 
 df_GoalPointsToday = pd.read_sql("SELECT * FROM GoalPoints WHERE date = ?", conn, params=[todaygoaldate])
 
+# Check if a Goal has been set for today's date
 if not df_GoalPointsToday.empty:
     goal_row = df_GoalPointsToday.iloc[0]
-
+    # Disaply information about today's goal
     st.session_state.gGoalpoints = int(goal_row['targetpoints'])
     st.session_state.gProgresspoints = int(goal_row['progresspoints'])
     goal_desc = goal_row['description']
@@ -57,8 +54,7 @@ if not df_GoalPointsToday.empty:
     )
 
 else:
-    # 5. Handle the case where no row exists for today
-    #st.status("No goal set for today yet.")
+    # Display that No goal has been defined yet for today    
     st.session_state.gGoalpoints = 0
     st.session_state.gProgresspoints = 0
     goal_desc = "NONE"
@@ -113,7 +109,6 @@ else:
 st.divider()
 # Create 6 equal-width columns
 col1, col2, col3, col4, col5, col6 = st.columns(6)
-
 
 with col1:
     if st.button("Start Working"):
@@ -208,10 +203,6 @@ def goal_timer():
         """,
         unsafe_allow_html=True
     )
-            #<p style="font-size: 18px; font-weight: 400; color: #000000; margin-bottom: 0px;">Session Time</p>
-            #<p style="font-size: 30px; font-weight: bold; color: #003366; margin-top: -10px; font-family: monospace;">{elapsed_time}</p>
-
-
 
 st.divider()
 
@@ -318,4 +309,4 @@ st.write(df_task_completed)
 conn.close()
 st.rerun()
 
-e
+
