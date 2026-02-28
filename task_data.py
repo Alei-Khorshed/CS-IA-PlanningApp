@@ -4,6 +4,7 @@ import pandas as pd       # pandas library for working and displaying with data
 import sqlite3 as sql     # sqllite3 library to work with a sqllite database
 
 
+
 # Display the page title at the top of the page and in the left navigation sidebar
 st.markdown("# Task Data")
 st.sidebar.markdown("# Task Data")
@@ -16,6 +17,8 @@ MyDB = "CS IA DB.db"
 
 # Create DB Connection 
 conn = sql.connect(MyDB)
+
+
 
 # Read the entire table into a DataFrame
 # Create a SQL command to read data from the table 

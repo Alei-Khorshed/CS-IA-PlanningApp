@@ -5,8 +5,13 @@ import sqlite3 as sql     # sqllite3 library to work with sqllite database
 
 
 # Display the page title at the top of the page and in the left navigation sidebar
+
+
 st.markdown("# User Data")
 st.sidebar.markdown("# User Data")
+
+
+
 
 # Set the variable name for my DB
 MyDB = "CS IA DB.db"

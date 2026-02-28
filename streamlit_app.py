@@ -45,9 +45,6 @@ if "gNoTasksPending" not in st.session_state:
 if "gNoTasksCompleted" not in st.session_state:
     st.session_state.gNoTasksCompleted = 0
 
-
-
-
 # Define the pages
 home_page = st.Page("home.py", title="Home", default=True)
 goal_planning = st.Page("goal_planning.py", title="Goal Planning")
@@ -57,11 +54,6 @@ user_page = st.Page("user_data.py", title="User Data")
 
 
 st.sidebar.markdown(f"### User: **{st.session_state.gCurrentUserName}**")
-st.sidebar.divider() # Adds a horizontal line
-
-st.sidebar.write("ECOLINT - IB Diploma")
-st.sidebar.write("Computer Science - IA")
-st.sidebar.write("© 2025 Alei Khorshed")
 st.sidebar.divider() # Adds a horizontal line
 
 # Set up navigation
