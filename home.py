@@ -124,7 +124,7 @@ with col1:
                 st.session_state.gStarttime = dt.now()  # This can be removed to keep start time of whole session fixed
     
         else:
-            st.error("You need to first add a goal point for today. Got o Goal Planning")
+            st.error("You need to first add a goal for today. Go to Goal Planning")
         
 
 with col2:
@@ -134,7 +134,7 @@ with col2:
             st.session_state.gCurrentActivity = "IDLE"    
             st.session_state.gEndtime = dt.now()  
         else:
-            st.error("You need to first add a goal point for today. Go to Goal Planning")
+            st.error("You need to first add a goal for today. Go to Goal Planning")
      
 
 with col3:
