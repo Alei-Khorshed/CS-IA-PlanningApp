@@ -23,7 +23,7 @@ conn = sql.connect(MyDB)
 st.markdown("## **My Goal Planning**")
 # Read data for Goal points from the database into a DataFrame and display it
 # Create a SQL command to read data 
-df = pd.read_sql("SELECT goalpoints_id,date,description,targetpoints,progresspoints FROM GoalPoints", conn)
+df = pd.read_sql("SELECT date,description,targetpoints,progresspoints FROM GoalPoints", conn)
 st.dataframe(df , hide_index=True)
 
 # Create a form to enter data
