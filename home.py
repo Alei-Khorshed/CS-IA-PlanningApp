@@ -300,18 +300,14 @@ else:
     st.write("Please click a row in the table to select a task.")
 
 
-if "complated_tasks_displayed" not in st.session_state:
-    st.session_state.complated_tasks_displayed = False 
-
 st.divider()
 st.markdown("## **My COMPLETED Tasks**")
 # Read and display Tasks that are pending
-if not st.session_state.complated_tasks_displayed:
-    df_task_completed = pd.read_sql("SELECT title, deadline, difficulty, status, date_completed FROM Task Where status='COMPLETED' ", conn)
-    st.dataframe(df_task_completed , hide_index=True)
-    st.session_state.complated_tasks_displayed = True
+df_task_completed = pd.read_sql("SELECT title, deadline, difficulty, status, date_completed FROM Task Where status='COMPLETED' ", conn)
+st.dataframe(df_task_completed , hide_index=True)
+
 
 conn.close()
-st.rerun()
+#st.rerun()
 
 
