@@ -24,7 +24,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
 # Create DB Connection 
 MyDB = "CS IA DB.db"
 
@@ -273,6 +272,7 @@ event = st.dataframe(
     df_task, 
     use_container_width=True, 
     hide_index=True,
+    column_config={"task_id": None  }, # Hide the task_id column but keep it in the dataframe row
     on_select="rerun",
     selection_mode="single-row" 
 )
@@ -302,8 +302,10 @@ else:
 st.divider()
 st.markdown("## **My COMPLETED Tasks**")
 # Read and display Tasks that are pending
-df_task_completed = pd.read_sql("SELECT task_id, title, deadline, difficulty, status, date_completed FROM Task Where status='COMPLETED' ", conn)
-st.write(df_task_completed)
+placeholder = st.empty()
+with placeholder:
+    df_task_completed = pd.read_sql("SELECT title, deadline, difficulty, status, date_completed FROM Task Where status='COMPLETED' ", conn)
+    st.dataframe(df_task_completed , hide_index=True)
 
 
 conn.close()
