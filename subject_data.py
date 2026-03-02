@@ -19,7 +19,7 @@ conn = sql.connect(MyDB)
 
 # Read the entire table into a DataFrame
 # Create a SQL command to read data from the table 
-df = pd.read_sql("SELECT * FROM Subject", conn)
+df = pd.read_sql("SELECT title FROM Subject", conn)
 # Display the dataframe on the page
 st.write(df)
 
