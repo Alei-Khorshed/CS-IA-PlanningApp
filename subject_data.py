@@ -58,4 +58,14 @@ with st.form("data_form", clear_on_submit=True):
 # Add a button to navigate back to the home page        
 if st.button("Save and Exit"):
     st.switch_page("home.py")
-    
+
+
+
+# Button to delete and reset all records
+if st.button("DELETE ALL Subjects"):
+    # Delete all records
+    cur = conn.cursor()
+    cur.execute("DELETE FROM Subject ")    
+    conn.commit() 
+    conn.close()
+    st.rerun()

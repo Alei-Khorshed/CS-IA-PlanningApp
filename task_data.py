@@ -85,3 +85,13 @@ if st.button("Reset All Tasks"):
     conn.commit() 
     conn.close()
     st.rerun()
+
+
+# Button to delete and reset all records
+if st.button("DELETE ALL Tasks"):
+    # Delete all records
+    cur = conn.cursor()
+    cur.execute("DELETE FROM Task ")    
+    conn.commit() 
+    conn.close()
+    st.rerun()
