@@ -24,7 +24,7 @@ conn = sql.connect(MyDB)
 # Create a SQL command to read data from the table 
 df = pd.read_sql("SELECT title , deadline , difficulty , status , date_completed FROM Task", conn)
 # Display the dataframe on the page
-st.write(df)
+st.dataframe(df , hide_index=True)
 
 # Read subjects to add them to the drop down list of subjects
 df_subject = pd.read_sql("SELECT subject_id, title FROM Subject", conn)

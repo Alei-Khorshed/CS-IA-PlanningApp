@@ -21,7 +21,7 @@ conn = sql.connect(MyDB)
 # Create a SQL command to read data from the table 
 df = pd.read_sql("SELECT title FROM Subject", conn)
 # Display the dataframe on the page
-st.data_editor(df , hide_index=True)
+st.dataframe(df , hide_index=True)
 
 # Create a form to enter data
 with st.form("data_form", clear_on_submit=True):
