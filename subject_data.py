@@ -5,24 +5,21 @@ import sqlite3 as sql     # sqllite3 library to work with a sqllite database
 
 
 try:
+    
+    # *** Function definitions ***
 
-    # Display the page title at the top of the page and in the left navigation sidebar
-    st.markdown("# Subject Data")
-    st.sidebar.markdown("# Subject Data")
-
-    # Function to create a database connection
-    def get_db_connection():
+    # Function to connect to the database and return a database connection
+    def get_db_connection() -> sql.Connection:
         # Set the variable name for the database
-        myDB = st.session_state.gDBName
+        TaskDB = st.session_state.gDBName
 
         # Create DB Connection 
-        conn = sql.connect(myDB)
+        conn = sql.connect(TaskDB)
 
         return conn
 
-    def display_subject_form(conn):
-
-
+    # Function to display subject form to load and display subject data and add new subjects
+    def display_subject_form(conn : sql.Connection):
         # Read the entire table into a DataFrame
         # Create a SQL command to read data from the table 
         df = pd.read_sql("SELECT title FROM Subject", conn)
@@ -72,10 +69,15 @@ try:
         st.rerun()
 
 
+    # *** Main page code ***
+
+    # Display the page title at the top of the page and in the left navigation sidebar
+    st.markdown("# Subject Data")
+    st.sidebar.markdown("# Subject Data")
+
     # Create DB connection
     if "gDBConnection" not in st.session_state:
         st.session_state.gDBConnection = get_db_connection()
-
 
     # Display the subject data form
     display_subject_form(st.session_state.gDBConnection)
