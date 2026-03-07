@@ -46,24 +46,28 @@ def display_task_form(conn : sql.Connection):
 
         # Save the new record into the database
         if submit:
-            selected_subject_id = int(df_subject.loc[df_subject['title'] == subject, 'subject_id'].iloc[0])
-            #st.write(selected_subject_id)    
-            #st.write(subject)
-            #st.write(title)
+            # Validate that title is not empty
+            if not title.strip():
+                st.error("Title cannot be empty.")
+            else:            
+                selected_subject_id = int(df_subject.loc[df_subject['title'] == subject, 'subject_id'].iloc[0])
+                #st.write(selected_subject_id)    
+                #st.write(subject)
+                #st.write(title)
 
-            # Create a DataFrame for the new record
-            data_record = [{"task_id":0,   "subject_id": selected_subject_id, "user_id": st.session_state.gCurrentUser, "title":title, "deadline":deadline, "difficulty":difficulty, "status":"PENDING", "date_completed":""}]
-            df_data = pd.DataFrame(data_record)
-            
-            # Create a SQL command to save the record to the database
-            cur = conn.cursor()
-            cur.executemany("INSERT INTO Task VALUES(NULL,:subject_id, :user_id, :title, :deadline, :difficulty, :status, :date_completed)", data_record)
-            # Commit Database to save changes
-            conn.commit() 
+                # Create a DataFrame for the new record
+                data_record = [{"task_id":0,   "subject_id": selected_subject_id, "user_id": st.session_state.gCurrentUser, "title":title, "deadline":deadline, "difficulty":difficulty, "status":"PENDING", "date_completed":""}]
+                df_data = pd.DataFrame(data_record)
+                
+                # Create a SQL command to save the record to the database
+                cur = conn.cursor()
+                cur.executemany("INSERT INTO Task VALUES(NULL,:subject_id, :user_id, :title, :deadline, :difficulty, :status, :date_completed)", data_record)
+                # Commit Database to save changes
+                conn.commit() 
 
-            st.session_state.first_load = "NO"
+                st.session_state.first_load = "NO"
 
-            st.rerun()  
+                st.rerun()  
     return
 
 # Function to delete all task data

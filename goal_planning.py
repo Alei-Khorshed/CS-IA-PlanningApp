@@ -35,21 +35,23 @@ def display_goal_planning_form(conn : sql.Connection):
 
         # Save the new record into the database
         if submit:
+            # Validate that description is not empty
+            if not description.strip():
+                st.error("Description cannot be empty.")
+            else:
+                # Create a DataFrame for the new record
+                data_record = [{"goalpoints_id":0, "user_id": st.session_state.gCurrentUser, "description":description, "date":goal_date, "targetpoints":goal_points, "progresspoints":0}]
+                #df_data = pd.DataFrame(data_record)
+                
+                # Create a SQL command to save the record to the database
+                cur = conn.cursor()
+                cur.executemany("INSERT INTO GoalPoints VALUES(NULL,:user_id, :date, :description, :targetpoints, :progresspoints)", data_record)
+                # Commit Database to save changes
+                conn.commit() 
 
-            # Create a DataFrame for the new record
-            data_record = [{"goalpoints_id":0, "user_id": st.session_state.gCurrentUser, "description":description, "date":goal_date, "targetpoints":goal_points, "progresspoints":0}]
-            #df_data = pd.DataFrame(data_record)
-            
-            # Create a SQL command to save the record to the database
-            cur = conn.cursor()
-            cur.executemany("INSERT INTO GoalPoints VALUES(NULL,:user_id, :date, :description, :targetpoints, :progresspoints)", data_record)
-            # Commit Database to save changes
-            conn.commit() 
-
-            st.session_state.first_load = "NO"
-            
-            st.rerun()
-
+                st.session_state.first_load = "NO"
+                
+                st.rerun()
     return
 
 # Function to delete all goal planning data
