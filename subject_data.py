@@ -72,7 +72,6 @@ try:
     # Display the page title at the top of the page and in the left navigation sidebar
     st.markdown("# Subject Data")
     st.sidebar.markdown("# Subject Data")
-    st.markdown(st.session_state.gDBName)
 
     # Create DB connection
     if "gDBConnection" not in st.session_state:

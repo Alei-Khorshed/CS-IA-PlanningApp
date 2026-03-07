@@ -96,6 +96,8 @@ def load_planning_data(conn : sql.Connection):
 # Function to display pending tasks
 def display_pending_tasks(conn : sql.Connection):
     st.markdown("## **My PENDING Tasks**")
+    # Get todays goal date
+    todaygoaldate = dt.now().strftime("%Y-%m-%d") 
     # Read and display Tasks that are pending
     df_task = pd.read_sql("SELECT task_id, title, deadline, difficulty, status, date_completed FROM Task Where status='PENDING' ", conn)
 
