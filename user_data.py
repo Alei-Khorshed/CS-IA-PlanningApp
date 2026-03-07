@@ -13,7 +13,7 @@ def get_db_connection() -> sql.Connection:
     TaskDB = st.session_state.gDBName
 
     # Create DB Connection 
-    conn = sql.connect(TaskDB)
+    conn = sql.connect(TaskDB,check_same_thread=False)
 
     return conn
 
