@@ -48,7 +48,6 @@ def display_goal_planning_form(conn : sql.Connection):
 
             st.session_state.first_load = "NO"
             
-            # Close DB connection
             st.rerun()
 
     return

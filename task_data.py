@@ -63,7 +63,6 @@ def display_task_form(conn : sql.Connection):
 
             st.session_state.first_load = "NO"
 
-            # Close Database connection
             st.rerun()  
     return
 
