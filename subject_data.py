@@ -80,5 +80,5 @@ try:
 
 
 except Exception as err:
-    print(f"Unexpected {err=}, {type(err)=}")
-    raise
+    print(f"The following error has occured: {err=}, {type(err)=}")
+    
