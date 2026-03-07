@@ -33,29 +33,29 @@ def display_subject_form(conn : sql.Connection):
 
         # Save the new record into the database
         if submit:
-
+            # Validate that title is not empty
             if not title.strip():
                 st.error("Title cannot be empty.")
+            else:
+                # Create a DataFrame for the new record
+                #data_record = [{"subject_id": id, "title": title}]
+                data_record = [{"subject_id": 0, "title": title}]
+                df_data = pd.DataFrame(data_record)
+                
+                # Write to SQLite
+                # 'append' adds to the table; 'replace' would overwrite it        
+                #df_data.to_sql("Subject", conn, if_exists="append", index=False)
+                
 
-            # Create a DataFrame for the new record
-            #data_record = [{"subject_id": id, "title": title}]
-            data_record = [{"subject_id": 0, "title": title}]
-            df_data = pd.DataFrame(data_record)
-            
-            # Write to SQLite
-            # 'append' adds to the table; 'replace' would overwrite it        
-            #df_data.to_sql("Subject", conn, if_exists="append", index=False)
-            
+                # Create a SQL command to save the record to the database
+                cur = conn.cursor()
+                cur.executemany("INSERT INTO Subject VALUES(NULL, :title)", data_record)
+                # Commit Database to save changes
+                conn.commit() 
 
-            # Create a SQL command to save the record to the database
-            cur = conn.cursor()
-            cur.executemany("INSERT INTO Subject VALUES(NULL, :title)", data_record)
-            # Commit Database to save changes
-            conn.commit() 
+                st.session_state.first_load = "NO"
 
-            st.session_state.first_load = "NO"
-
-            st.rerun()
+                st.rerun()
 
     return
 
