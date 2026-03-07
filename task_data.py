@@ -86,32 +86,33 @@ def reset_all_tasks(conn : sql.Connection):
     conn.close()
     st.rerun()
 
-
 # *** Main page code ***
 
-# Display the page title at the top of the page and in the left navigation sidebar
-st.markdown("# Task Data")
-st.sidebar.markdown("# Task Data")
+# Create error handling 
+try:
+    
+    # Display the page title at the top of the page and in the left navigation sidebar
+    st.markdown("# Task Data")
+    st.sidebar.markdown("# Task Data")
 
-# Create DB connection
-if "gDBConnection" not in st.session_state:
-    st.session_state.gDBConnection = get_db_connection()
+    # Create DB connection
+    if "gDBConnection" not in st.session_state:
+        st.session_state.gDBConnection = get_db_connection()
 
-# Display the task data form
-display_task_form(st.session_state.gDBConnection)
+    # Display the task data form
+    display_task_form(st.session_state.gDBConnection)
 
-# Add a button to navigate back to the home page        
-if st.button("Save and Exit"):
-    # Save logic here
-    st.switch_page("home.py")
+    # Add a button to navigate back to the home page        
+    if st.button("Save and Exit"):
+        # Save logic here
+        st.switch_page("home.py")
 
-if st.button("Reset All Tasks"):
-    reset_all_tasks(st.session_state.gDBConnection)
+    if st.button("Reset All Tasks"):
+        reset_all_tasks(st.session_state.gDBConnection)
 
-# Button to delete and reset all records
-if st.button("DELETE ALL Tasks"):
-    delete_task_data(st.session_state.gDBConnection)
+    # Button to delete and reset all records
+    if st.button("DELETE ALL Tasks"):
+        delete_task_data(st.session_state.gDBConnection)
 
-
-
-
+except Exception as err:
+    st.error(f"The following error has occured: {err=}, {type(err)=}")
