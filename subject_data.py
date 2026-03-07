@@ -5,7 +5,7 @@ import sqlite3 as sql     # sqllite3 library to work with a sqllite database
 
 
 try:
- 
+    result = 1/0
 
     # Display the page title at the top of the page and in the left navigation sidebar
     st.markdown("# Subject Data")
