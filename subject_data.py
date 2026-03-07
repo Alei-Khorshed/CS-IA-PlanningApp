@@ -6,9 +6,6 @@ import sqlite3 as sql     # sqllite3 library to work with a sqllite database
 
 try:
  
-    i = 1/0
-
-
 
     # Display the page title at the top of the page and in the left navigation sidebar
     st.markdown("# Subject Data")
@@ -61,7 +58,8 @@ try:
         return
 
 
-
+    # Display the subject form
+    display_subject_form()
 
 
     # Add a button to navigate back to the home page        
