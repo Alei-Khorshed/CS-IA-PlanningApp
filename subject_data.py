@@ -78,5 +78,5 @@ try:
 
 
 except Exception as err:
-    print(f"The following error has occured: {err=}, {type(err)=}")
+    st.error(f"The following error has occured: {err=}, {type(err)=}")
     
