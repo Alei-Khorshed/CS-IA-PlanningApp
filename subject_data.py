@@ -5,19 +5,23 @@ import sqlite3 as sql     # sqllite3 library to work with a sqllite database
 
 
 try:
-    result = 1/0
 
     # Display the page title at the top of the page and in the left navigation sidebar
     st.markdown("# Subject Data")
     st.sidebar.markdown("# Subject Data")
 
-
-    def display_subject_form():
-        # Set the variable name for my DB
-        MyDB = "CS IA DB.db"
+    # Function to create a database connection
+    def get_db_connection():
+        # Set the variable name for the database
+        myDB = st.session_state.gDBName
 
         # Create DB Connection 
-        conn = sql.connect(MyDB)
+        conn = sql.connect(myDB)
+
+        return conn
+
+    def display_subject_form(conn):
+
 
         # Read the entire table into a DataFrame
         # Create a SQL command to read data from the table 
@@ -57,25 +61,33 @@ try:
 
         return
 
+    # Function to delete all subject data
+    def delete_subject_data(conn):
 
-    # Display the subject form
-    display_subject_form()
+        # Delete all records
+        cur = conn.cursor()
+        conn.execute("DELETE FROM Subject ")    
+        conn.gDBConnection.commit() 
+        conn.gDBConnection.close()
+        st.rerun()
+
+
+    # Create DB connection
+    if "gDBConnection" not in st.session_state:
+        st.session_state.gDBConnection = get_db_connection()
+
+
+    # Display the subject data form
+    display_subject_form(st.session_state.gDBConnection)
 
 
     # Add a button to navigate back to the home page        
     if st.button("Save and Exit"):
         st.switch_page("home.py")
 
-
     # Button to delete and reset all records
     if st.button("DELETE ALL Subjects"):
-        # Delete all records
-        cur = conn.cursor()
-        cur.execute("DELETE FROM Subject ")    
-        conn.commit() 
-        conn.close()
-        st.rerun()
-
+        delete_subject_data(st.session_state.gDBConnection)
 
 except Exception as err:
     st.error(f"The following error has occured: {err=}, {type(err)=}")

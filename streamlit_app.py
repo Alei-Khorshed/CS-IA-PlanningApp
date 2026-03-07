@@ -4,6 +4,9 @@ st.set_page_config(layout="wide")
 
 # Initialize global state variables to be used in the pages of the application
 
+if "gDBName" not in st.session_state:
+    st.session_state.gDBName = "TaskDB.db"
+
 if "gCurrentUser" not in st.session_state:
     st.session_state.gCurrentUser = 1
 
