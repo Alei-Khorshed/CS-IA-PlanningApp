@@ -109,7 +109,7 @@ def calculate_task_priority_score(df_tasks: pd.DataFrame) -> pd.DataFrame:
     df["deadline"] = pd.to_datetime(df["deadline"])
 
     #today = pd.Timestamp(datetime.today().date())
-    todaygoaldate = dt.now().strftime("%Y-%m-%d") 
+    todaygoaldate = pd.Timestamp.today()
 
     df["days_to_deadline"] = (df["deadline"] - todaygoaldate).dt.days
 
