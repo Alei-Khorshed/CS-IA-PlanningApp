@@ -33,6 +33,10 @@ def display_subject_form(conn : sql.Connection):
 
         # Save the new record into the database
         if submit:
+
+            if not title.strip():
+                st.error("Title cannot be empty.")
+
             # Create a DataFrame for the new record
             #data_record = [{"subject_id": id, "title": title}]
             data_record = [{"subject_id": 0, "title": title}]
