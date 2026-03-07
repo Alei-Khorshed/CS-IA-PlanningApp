@@ -51,8 +51,6 @@ def display_subject_form(conn : sql.Connection):
 
             st.session_state.first_load = "NO"
 
-            # Close Database connection           
-            conn.close()
             st.rerun()
 
     return

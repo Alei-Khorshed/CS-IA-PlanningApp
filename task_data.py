@@ -64,7 +64,6 @@ def display_task_form(conn : sql.Connection):
             st.session_state.first_load = "NO"
 
             # Close Database connection
-            conn.close()
             st.rerun()  
     return
 
@@ -74,7 +73,6 @@ def delete_task_data(conn : sql.Connection):
     cur = conn.cursor()
     cur.execute("DELETE FROM Task ")    
     conn.commit() 
-    conn.close()
     st.rerun()
 
 # Function to reset all task data
@@ -83,7 +81,6 @@ def reset_all_tasks(conn : sql.Connection):
     cur = conn.cursor()
     cur.execute("UPDATE Task SET status = 'PENDING', date_completed='' ")    
     conn.commit() 
-    conn.close()
     st.rerun()
 
 # *** Main page code ***

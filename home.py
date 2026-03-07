@@ -142,7 +142,6 @@ def display_completed_tasks(conn : sql.Connection):
     # Read and display Tasks that are pending
     df_task_completed = pd.read_sql("SELECT title, deadline, difficulty, status, date_completed FROM Task Where status='COMPLETED' ", conn)
     st.dataframe(df_task_completed , hide_index=True)
-    conn.close()
     return
 
 

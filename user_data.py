@@ -48,8 +48,6 @@ def display_user_form(conn : sql.Connection):
             cur = conn.cursor()
             cur.executemany("INSERT INTO User VALUES(NULL,:firstname, :lastname, :dateofbirth, :username, :password)", data_record)
             conn.commit() 
-
-            conn.close()
             st.rerun()
 
     return
@@ -60,7 +58,6 @@ def delete_user_data(conn : sql.Connection):
     cur = conn.cursor()
     cur.execute("Delete from User") 
     conn.commit() 
-    conn.close()
     st.rerun()
     return
 
