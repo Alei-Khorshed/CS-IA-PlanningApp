@@ -93,6 +93,35 @@ def load_planning_data(conn : sql.Connection):
         st.session_state.gProgressPerc = 0    
     return
 
+
+def quick_sort():
+    return
+
+# Function to calculate priority score for each task
+def calculate_task_priority_score(df_tasks: pd.DataFrame) -> pd.DataFrame:
+
+    # Calculates priority score for each task based on the number of days till deadline and difficulty 
+    # Formula: priority score = (1 / no. of days to deadline) * 10000 * difficulty
+
+    # make a copy of the dataframe
+    df = df_tasks.copy()
+
+    df["deadline"] = pd.to_datetime(df["deadline"])
+
+    #today = pd.Timestamp(datetime.today().date())
+    todaygoaldate = dt.now().strftime("%Y-%m-%d") 
+
+    df["days_to_deadline"] = (df["deadline"] - todaygoaldate).dt.days
+
+    # if days to deadline is 0 or less than 1 then convert to 1 to avoid division by zero
+    df["days_to_deadline"] = df["days_to_deadline"].clip(lower=1)
+
+    # Calculate priority score
+    df["priority_score"] = (1 / df["days_to_deadline"]) * 10000 * df["difficulty"]
+
+    return df
+
+
 # Function to display pending tasks
 def display_pending_tasks(conn : sql.Connection):
     st.markdown("## **My PENDING Tasks**")
@@ -101,6 +130,11 @@ def display_pending_tasks(conn : sql.Connection):
     # Read and display Tasks that are pending
     df_task = pd.read_sql("SELECT task_id, title, deadline, difficulty, status, date_completed FROM Task Where status='PENDING' ", conn)
 
+    # Calculate priority score for tasks based on the number of days till deadline and difficulty 
+    df_task_priority = calculate_task_priority_score(df_task)
+
+    # display tasks with priority
+    st.dataframe(df_task_priority , hide_index=True)
 
     # Display the Tasks in a dataframe with ROW SELECTION enabled
     # 'on_select="rerun"' makes the app reactive when a row is clicked
