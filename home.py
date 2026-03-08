@@ -414,3 +414,4 @@ try:
 
 except Exception as err:
     st.error(f"The following error has occured: {err=}, {type(err)=}")
+    raise
