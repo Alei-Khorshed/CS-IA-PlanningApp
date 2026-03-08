@@ -63,7 +63,13 @@ user_page = st.Page("user_data.py", title="User Data")
 st.sidebar.markdown(f"### User: **{st.session_state.gCurrentUserName}**")
 st.sidebar.divider() # Adds a horizontal line
 
-sidebar_pages = [login, home_page, goal_planning, subject_page, task_page, user_page]
+sidebar_pages = [home_page, goal_planning, subject_page, task_page, user_page]
+
+# Load the main page
+# Check if this is first load and user is not logged in
+if st.session_state.gCurrentUser == 0:
+    # Goto login page
+    sidebar_pages.insert(0, login)
 
 # Set up navigation
 pg = st.navigation(sidebar_pages)
