@@ -22,7 +22,8 @@ def display_task_form(conn : sql.Connection):
 
     # Read the entire table into a DataFrame
     # Create a SQL command to read data from the table 
-    df = pd.read_sql("SELECT title , deadline , difficulty , status , date_completed FROM Task", conn)
+    df = pd.read_sql("SELECT task.title , subject.title as subject, deadline , difficulty , status , date_completed FROM Task INNER JOIN subject ON task.subject_id = subject.subject_id WHERE user_id = ?", conn , params=[st.session_state.gCurrentUser])
+
     # Display the dataframe on the page
     st.dataframe(df , hide_index=True)
 

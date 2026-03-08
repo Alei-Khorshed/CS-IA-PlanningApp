@@ -208,7 +208,7 @@ def display_completed_tasks(conn : sql.Connection):
     st.markdown("## **My COMPLETED Tasks**")
     todaygoaldate = dt.now().strftime("%Y-%m-%d") 
     # Read and display Tasks that are pending
-    df_task_completed = pd.read_sql("SELECT title, deadline, difficulty, status, date_completed FROM Task Where status='COMPLETED' AND user_id =? AND date_completed = ?", conn , params=[ st.session_state.gCurrentUser , todaygoaldate])
+    df_task_completed = pd.read_sql("SELECT Task.title , Subject.title as subject, deadline, difficulty, status, date_completed FROM Task INNER JOIN subject ON task.subject_id = subject.subject_id WHERE status='COMPLETED' AND user_id =? AND date_completed = ?", conn , params=[ st.session_state.gCurrentUser , todaygoaldate])
     st.dataframe(df_task_completed , hide_index=True)
     return
 
