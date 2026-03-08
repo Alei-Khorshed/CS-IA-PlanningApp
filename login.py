@@ -2,9 +2,6 @@
 import streamlit as st    # main streamlit library 
 import pandas as pd       # pandas library for working and displaying with data 
 import sqlite3 as sql     # sqllite3 library to work with a sqllite database
-import datetime as dt     # datetime library to manage start and end of session
-from datetime import datetime as dt
-
 
  
 # *** Function definitions ***
@@ -49,7 +46,7 @@ def login_form(conn : sql.Connection):
                     st.switch_page("home.py")
 
                 else:
-                    st.error("A user matching the above username and password could not be found. If you are a new user click on 'Register New User'. ")
+                    st.error("A user matching the above username and password could not be found! If you are a new user click on 'Register New User'. ")
                     st.session_state.gCurrentUser = 0
                     st.session_state.gCurrentUserName = "Guest"
 
@@ -70,9 +67,7 @@ try:
     # Display the subject data form
     login_form(st.session_state.gDBConnection)
 
-
-    st.divider()
-
+    
     if st.button("Register New User"):
         st.switch_page("register_user.py") 
 
