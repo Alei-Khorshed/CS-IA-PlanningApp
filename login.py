@@ -23,10 +23,10 @@ def get_db_connection() -> sql.Connection:
 def login_form(conn : sql.Connection):
     
     # Create a form to enter data
-    with st.form("data_form", clear_on_submit=True):
+    with st.form("data_form"):
         # Add text fields to collect data in each column
         username = st.text_input("User Name", key="txtUserName")
-        password = st.text_input("Password", key="txtPassword")
+        password = st.text_input("Password", key="txtPassword", type="password")
         # Add a sumbit button
         submit = st.form_submit_button("Login")
                
