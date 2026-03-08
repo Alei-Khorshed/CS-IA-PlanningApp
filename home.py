@@ -149,7 +149,7 @@ def display_pending_tasks(conn : sql.Connection):
     # Get todays goal date
     todaygoaldate = dt.now().strftime("%Y-%m-%d") 
     # Read and display Tasks that are pending
-    df_task = pd.read_sql("SELECT task_id, title, deadline, difficulty, status FROM Task Where status='PENDING' AND user_id = ?", conn , params=[st.session_state.gCurrentUser])
+    df_task = pd.read_sql("SELECT task_id, Task.title, Subject.title, deadline, difficulty, status FROM Task INNER JOIN subject ON task.subject_id = subject.subject_id Where status='PENDING' AND user_id = ?", conn , params=[st.session_state.gCurrentUser])
 
     # Calculate priority score for tasks based on the number of days till deadline and difficulty 
     # Check that the pending tasks dataframe is not empty
@@ -414,4 +414,5 @@ try:
 
 except Exception as err:
     st.error(f"The following error has occured: {err=}, {type(err)=}")
-    
+
+
