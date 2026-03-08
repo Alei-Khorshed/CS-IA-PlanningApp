@@ -182,8 +182,8 @@ def display_pending_tasks(conn : sql.Connection):
     if len(selected_rows) > 0:
         # Get the actual data of the selected row
         row_index = selected_rows[0]
-        task_id = df_task.iloc[row_index]['task_id'] 
-        task_title = df_task.iloc[row_index]['title']
+        task_id = df_task_sorted.iloc[row_index]['task_id'] 
+        task_title = df_task_sorted.iloc[row_index]['title']
 
         st.info(f"Selected Task: **{task_title}**")
 
