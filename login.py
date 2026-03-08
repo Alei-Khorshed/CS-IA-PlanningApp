@@ -20,7 +20,7 @@ def get_db_connection() -> sql.Connection:
     return conn
 
 # Function to display user form 
-def display_login_form(conn : sql.Connection):
+def login_form(conn : sql.Connection):
     
     # Create a form to enter data
     with st.form("data_form", clear_on_submit=True):
@@ -30,14 +30,30 @@ def display_login_form(conn : sql.Connection):
         # Add a sumbit button
         submit = st.form_submit_button("Login")
 
+        username = username.strip()
+        password = password.strip()
+        if not username or not password:
+           st.error("Enter a username and password")
+        else:
+            # Search for user in the database based on the username and password
+            if submit:
+                df_user = pd.read_sql("SELECT * FROM user WHERE username = ? AND password = ?", conn, params=[username , password])
 
-        # Save the new record into the database
-        if submit:
-            # Create a SQL command to save the record to the database
-            cur = conn.cursor()
-            cur.executemany("INSERT INTO User VALUES(NULL,:firstname, :lastname, :dateofbirth, :username, :password)", data_record)
-            conn.commit() 
-            st.rerun()
+                # Check if a matching user is found in the database
+                if not df_user.empty:
+                    user_row = df_user.iloc[0]
+                    # Disaply information about today's goal
+                    st.session_state.gCurrentUser = int(user_row['user_id'])
+                    st.session_state.gCurrentUserName = username
+                    st.text("user found")
+                    st.text(st.session_state.gCurrentUser)
+                    st.text(st.session_state.gCurrentUserName)
+
+                else:
+                    st.text("user NOT found")
+                    st.session_state.gCurrentUser = 0
+                    st.session_state.gCurrentUserName = "guest"
+
 
     return
 # *** Main page code ***
@@ -54,7 +70,7 @@ try:
         st.session_state.gDBConnection = get_db_connection()
 
     # Display the subject data form
-    display_login_form(st.session_state.gDBConnection)
+    login_form(st.session_state.gDBConnection)
 
 
     st.divider()
