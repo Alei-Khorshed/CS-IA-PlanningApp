@@ -160,9 +160,12 @@ def display_pending_tasks(conn : sql.Connection):
     task_list_sorted = quicksort_tasks(task_list)
     # convert task list to a dataframe
     df_task_sorted = pd.DataFrame(task_list_sorted)
-
-    # display tasks with priority
+    # ***** display tasks with priority *****
     st.dataframe(df_task_priority , hide_index=True)
+    st.dataframe(df_task_sorted , hide_index=True)    
+
+    # remove additional columns used for sorting
+    df_task_sorted.drop(columns=["days_to_deadline", "priority_score"], inplace=True)
     st.dataframe(df_task_sorted , hide_index=True)    
 
     # Display the Tasks in a dataframe with ROW SELECTION enabled
