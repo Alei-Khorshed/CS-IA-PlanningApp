@@ -92,6 +92,7 @@ try:
     if st.button("DELETE ALL Subjects"):
         delete_subject_data(st.session_state.gDBConnection)
 
+
 except Exception as err:
     st.error(f"The following error has occured: {err=}, {type(err)=}")
     
