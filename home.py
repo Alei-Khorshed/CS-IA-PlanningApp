@@ -138,7 +138,7 @@ def calculate_task_priority_score(df_tasks: pd.DataFrame) -> pd.DataFrame:
     df["difficulty_value"] = pd.to_numeric(df["difficulty_value"])
 
     # Calculate priority score
-    df["priority_score"] = (1 / df["days_to_deadline"]) * 10000 + df["difficulty"]
+    df["priority_score"] = (1 / df["days_to_deadline"]) * 10000 + df["difficulty_value"]
 
     return df
 
@@ -414,4 +414,4 @@ try:
 
 except Exception as err:
     st.error(f"The following error has occured: {err=}, {type(err)=}")
-    raise
+    
