@@ -21,12 +21,7 @@ def get_db_connection() -> sql.Connection:
 
 # Function to display user form 
 def display_login_form(conn : sql.Connection):
-    # Read the entire table into a DataFrame
-    # Create a SQL command to read data from the table 
-    df = pd.read_sql("SELECT * FROM User", conn)
-    # Display the dataframe on the page
-    st.write(df)
-
+    
     # Create a form to enter data
     with st.form("data_form", clear_on_submit=True):
         # Add text fields to collect data in each column
