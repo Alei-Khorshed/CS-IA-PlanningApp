@@ -48,6 +48,22 @@ def display_user_form(conn : sql.Connection):
             cur = conn.cursor()
             cur.executemany("INSERT INTO User VALUES(NULL,:firstname, :lastname, :dateofbirth, :username, :password)", data_record)
             conn.commit() 
+
+            # Find matchin user in the database
+            df_user = pd.read_sql("SELECT * FROM user WHERE username = ? AND password = ?", conn, params=[username , password])
+            if not df_user.empty:
+                # Get user_id from the database
+                user_row = df_user.iloc[0]                    
+                st.session_state.gCurrentUser = int(user_row['user_id'])
+                st.session_state.gCurrentUserName = username
+                st.switch_page("home.py")
+
+            else:
+                st.session_state.gCurrentUser = 0
+                st.session_state.gCurrentUserName = "Guest"
+                st.switch_page("home.py")           
+
+
             st.rerun()
 
     return
