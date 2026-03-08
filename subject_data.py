@@ -64,7 +64,7 @@ def delete_subject_data(conn):
     # Delete all records
     cur = conn.cursor()
     conn.execute("DELETE FROM Subject ")    
-    conn.gDBConnection.commit() 
+    conn.commit() 
     st.rerun()
 
 
