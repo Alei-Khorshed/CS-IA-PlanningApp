@@ -97,6 +97,7 @@ def load_planning_data(conn : sql.Connection):
 # Recursive QuickSort Algorithm
 def quicksort_tasks(tasks: list)-> list:
 
+
     # Recursive quick sort algorithm to sort a list of task dictionaries by priority_score in descending order
 
     if len(tasks) <= 1:
@@ -115,31 +116,27 @@ def quicksort_tasks(tasks: list)-> list:
 def calculate_task_priority_score(df_tasks: pd.DataFrame) -> pd.DataFrame:
 
     # Calculates priority score for each task based on the number of days till deadline and difficulty 
-    # Formula: priority score = (1 / no. of days to deadline) * 10000 * difficulty
+    # Formula: priority score = (1 / no. of days to deadline) * 10000 + difficulty
 
     # make a copy of the dataframe
     df = df_tasks.copy()
-
+    # Convert deadline to date format 
     df["deadline"] = pd.to_datetime(df["deadline"])
-
-    #today = pd.Timestamp(datetime.today().date())
+    # Get today's date
     todaygoaldate = pd.Timestamp.today()
-
+    # Caulcate no. of days till deadline
     df["days_to_deadline"] = (df["deadline"] - todaygoaldate).dt.days
-
     # if days to deadline is 0 or less than 1 then convert to 1 to avoid division by zero
     df["days_to_deadline"] = df["days_to_deadline"].clip(lower=1)
-
     # Map difficulty to numeric values
     difficulty_map = {"Easy": 1, "Medium": 2, "Hard": 3}
     df["difficulty"] = df["difficulty"].map(difficulty_map)
-
     # Convert values to numeric to calculate priority score
     df["days_to_deadline"] = pd.to_numeric(df["days_to_deadline"])
     df["difficulty"] = pd.to_numeric(df["difficulty"])
 
     # Calculate priority score
-    df["priority_score"] = (1 / df["days_to_deadline"]) * 10000 * df["difficulty"]
+    df["priority_score"] = (1 / df["days_to_deadline"]) * 10000 + df["difficulty"]
 
     return df
 
@@ -160,14 +157,8 @@ def display_pending_tasks(conn : sql.Connection):
     task_list_sorted = quicksort_tasks(task_list)
     # convert task list to a dataframe
     df_task_sorted = pd.DataFrame(task_list_sorted)
-    #*** To REMOVE
-    st.dataframe(df_task_priority , hide_index=True)
-    st.dataframe(df_task_sorted , hide_index=True)    
-
     # remove additional columns used for sorting
     df_task_sorted.drop(columns=["days_to_deadline", "priority_score"], inplace=True)
-    #*** To REMOVE
-    st.dataframe(df_task_sorted , hide_index=True)    
 
     # Display the Tasks in a dataframe with ROW SELECTION enabled
     # 'on_select="rerun"' makes the app reactive when a row is clicked
