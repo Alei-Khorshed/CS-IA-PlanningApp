@@ -50,13 +50,6 @@ if "gNoTasksPending" not in st.session_state:
 if "gNoTasksCompleted" not in st.session_state:
     st.session_state.gNoTasksCompleted = 0
 
-# Load the main page
-# Check if this is first load and user is not logged in
-if st.session_state.gCurrentUser == 0:
-    # Goto login page
-    st.switch_page("login.py")
-    
-
 
 # Define the pages
 login = st.Page("login.py", title="Login", default=True)
@@ -70,8 +63,10 @@ user_page = st.Page("user_data.py", title="User Data")
 st.sidebar.markdown(f"### User: **{st.session_state.gCurrentUserName}**")
 st.sidebar.divider() # Adds a horizontal line
 
+sidebar_pages = [login, home_page, goal_planning, subject_page, task_page, user_page]
+
 # Set up navigation
-pg = st.navigation([home_page, goal_planning,subject_page, task_page,user_page])
+pg = st.navigation(sidebar_pages)
 
 # Show selected sidebar page
 pg.run()
