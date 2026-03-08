@@ -29,26 +29,25 @@ def login_form(conn : sql.Connection):
         password = st.text_input("Password", key="txtPassword")
         # Add a sumbit button
         submit = st.form_submit_button("Login")
-
-        username = username.strip()
-        password = password.strip()
-        if not username or not password:
-           st.error("Enter a username and password")
-        else:
-            # Search for user in the database based on the username and password
-            if submit:
-                df_user = pd.read_sql("SELECT * FROM user WHERE username = ? AND password = ?", conn, params=[username , password])
-
+               
+        # Search for user in the database based on the username and password
+        if submit:
+            username = username.strip()
+            password = password.strip()
+            # Validate that username and password are not both empty
+            if not username or not password:                    
+                st.error("Enter a username and password")
+            else:
                 # Check if a matching user is found in the database
+                df_user = pd.read_sql("SELECT * FROM user WHERE username = ? AND password = ?", conn, params=[username , password])
                 if not df_user.empty:
                     user_row = df_user.iloc[0]
-                    # Disaply information about today's goal
+                    # Get user_id from the database
                     st.session_state.gCurrentUser = int(user_row['user_id'])
                     st.session_state.gCurrentUserName = username
                     st.text("user found")
                     st.text(st.session_state.gCurrentUser)
                     st.text(st.session_state.gCurrentUserName)
-
                 else:
                     st.text("user NOT found")
                     st.session_state.gCurrentUser = 0
