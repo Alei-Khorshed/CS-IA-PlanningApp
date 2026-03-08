@@ -94,8 +94,22 @@ def load_planning_data(conn : sql.Connection):
     return
 
 
-def quick_sort():
-    return
+# Recursive QuickSort Algorithm
+def quicksort_tasks(tasks: list)-> list:
+
+    # Recursive quick sort algorithm to sort a list of task dictionaries by priority_score in descending order
+
+    if len(tasks) <= 1:
+        return tasks
+
+    pivot = tasks[len(tasks) // 2]["priority_score"]
+
+    higher = [task for task in tasks if task["priority_score"] > pivot]
+    equal = [task for task in tasks if task["priority_score"] == pivot]
+    lower = [task for task in tasks if task["priority_score"] < pivot]
+
+    return quicksort_tasks(higher) + equal + quicksort_tasks(lower)
+    
 
 # Function to calculate priority score for each task
 def calculate_task_priority_score(df_tasks: pd.DataFrame) -> pd.DataFrame:
@@ -140,9 +154,16 @@ def display_pending_tasks(conn : sql.Connection):
 
     # Calculate priority score for tasks based on the number of days till deadline and difficulty 
     df_task_priority = calculate_task_priority_score(df_task)
+    # Create a list of dict for the tasks
+    task_list = df_task_priority.to_dict("records")
+    # sort the task list using quicksort 
+    task_list_sorted = quicksort_tasks(task_list)
+    # convert task list to a dataframe
+    df_task_sorted = pd.DataFrame(task_list_sorted)
 
     # display tasks with priority
     st.dataframe(df_task_priority , hide_index=True)
+    st.dataframe(df_task_sorted , hide_index=True)    
 
     # Display the Tasks in a dataframe with ROW SELECTION enabled
     # 'on_select="rerun"' makes the app reactive when a row is clicked
