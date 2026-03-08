@@ -132,10 +132,10 @@ def calculate_task_priority_score(df_tasks: pd.DataFrame) -> pd.DataFrame:
     df["days_to_deadline"] = df["days_to_deadline"].clip(lower=1)
     # Map difficulty to numeric values
     difficulty_map = {"Easy": 1, "Medium": 2, "Hard": 3}
-    df["difficulty"] = df["difficulty"].map(difficulty_map)
+    df["difficulty_value"] = df["difficulty"].map(difficulty_map)
     # Convert values to numeric to calculate priority score
     df["days_to_deadline"] = pd.to_numeric(df["days_to_deadline"])
-    df["difficulty"] = pd.to_numeric(df["difficulty"])
+    df["difficulty_value"] = pd.to_numeric(df["difficulty_value"])
 
     # Calculate priority score
     df["priority_score"] = (1 / df["days_to_deadline"]) * 10000 + df["difficulty"]
@@ -162,7 +162,7 @@ def display_pending_tasks(conn : sql.Connection):
         # convert task list to a dataframe
         df_task_sorted = pd.DataFrame(task_list_sorted)
         # remove additional columns used for sorting
-        df_task_sorted.drop(columns=["days_to_deadline", "priority_score"], inplace=True)
+        df_task_sorted.drop(columns=["days_to_deadline", "priority_score","difficulty_value"], inplace=True)
     else:
         # Use the original dataframe variable as it is empty
         df_task_sorted = df_task
