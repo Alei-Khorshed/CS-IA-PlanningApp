@@ -51,7 +51,7 @@ def display_user_form(conn : sql.Connection):
                 cur = conn.cursor()
                 cur.executemany("INSERT INTO User VALUES(NULL,:firstname, :lastname, :dateofbirth, :username, :password)", data_record)
                 conn.commit() 
-
+                st.text("user saved")
                 # Get the user_id of the user which has been saved into the database
 
                 # Find matchin user in the database
