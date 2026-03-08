@@ -74,7 +74,6 @@ def display_user_form(conn : sql.Connection):
 try:
     # Display the page title at the top of the page 
     st.markdown("# Register New User")
-    st.sidebar.markdown("# Register New User")
 
     # Create DB connection
     if "gDBConnection" not in st.session_state:
