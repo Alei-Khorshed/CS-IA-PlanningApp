@@ -41,7 +41,6 @@ def display_goal_planning_form(conn : sql.Connection):
             else:
                 # Create a DataFrame for the new record
                 data_record = [{"goalpoints_id":0, "user_id": st.session_state.gCurrentUser, "description":description, "date":goal_date, "targetpoints":goal_points, "progresspoints":0}]
-                #df_data = pd.DataFrame(data_record)
                 
                 # Create a SQL command to save the record to the database
                 cur = conn.cursor()
