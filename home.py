@@ -150,15 +150,20 @@ def display_pending_tasks(conn : sql.Connection):
     df_task = pd.read_sql("SELECT task_id, title, deadline, difficulty, status, date_completed FROM Task Where status='PENDING' ", conn)
 
     # Calculate priority score for tasks based on the number of days till deadline and difficulty 
-    df_task_priority = calculate_task_priority_score(df_task)
-    # Create a list of dict for the tasks
-    task_list = df_task_priority.to_dict("records")
-    # sort the task list using quicksort 
-    task_list_sorted = quicksort_tasks(task_list)
-    # convert task list to a dataframe
-    df_task_sorted = pd.DataFrame(task_list_sorted)
-    # remove additional columns used for sorting
-    df_task_sorted.drop(columns=["days_to_deadline", "priority_score"], inplace=True)
+    # Check that the pending tasks dataframe is not empty
+    if not df_task.empty:
+        df_task_priority = calculate_task_priority_score(df_task)
+        # Create a list of dict for the tasks
+        task_list = df_task_priority.to_dict("records")
+        # sort the task list using quicksort 
+        task_list_sorted = quicksort_tasks(task_list)
+        # convert task list to a dataframe
+        df_task_sorted = pd.DataFrame(task_list_sorted)
+        # remove additional columns used for sorting
+        df_task_sorted.drop(columns=["days_to_deadline", "priority_score"], inplace=True)
+    else:
+        # Use the original dataframe variable as it is empty
+        df_task_sorted = df_task
 
     # Display the Tasks in a dataframe with ROW SELECTION enabled
     # 'on_select="rerun"' makes the app reactive when a row is clicked
