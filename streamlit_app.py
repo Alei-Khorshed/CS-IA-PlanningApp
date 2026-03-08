@@ -63,7 +63,7 @@ st.sidebar.markdown(f"### User: **{st.session_state.gCurrentUserName}**")
 st.sidebar.divider() # Adds a horizontal line
 
 # Set up navigation
-pg = st.navigation(home_page, goal_planning,subject_page, task_page,user_page])
+pg = st.navigation([home_page, goal_planning,subject_page, task_page,user_page])
 
 
 # Run the selected page
