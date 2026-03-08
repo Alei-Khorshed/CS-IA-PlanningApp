@@ -41,18 +41,17 @@ def login_form(conn : sql.Connection):
                 # Check if a matching user is found in the database
                 df_user = pd.read_sql("SELECT * FROM user WHERE username = ? AND password = ?", conn, params=[username , password])
                 if not df_user.empty:
-                    user_row = df_user.iloc[0]
+                    # A matching User has been found so login can proceed
                     # Get user_id from the database
+                    user_row = df_user.iloc[0]                    
                     st.session_state.gCurrentUser = int(user_row['user_id'])
                     st.session_state.gCurrentUserName = username
-                    st.text("user found")
-                    st.text(st.session_state.gCurrentUser)
-                    st.text(st.session_state.gCurrentUserName)
-                else:
-                    st.text("user NOT found")
-                    st.session_state.gCurrentUser = 0
-                    st.session_state.gCurrentUserName = "guest"
+                    st.switch_page("home.py")
 
+                else:
+                    st.error("A user matching the above username and password could not be found. If you are a new user click on 'Register New User'. ")
+                    st.session_state.gCurrentUser = 0
+                    st.session_state.gCurrentUserName = "Guest"
 
     return
 # *** Main page code ***
