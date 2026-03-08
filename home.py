@@ -116,6 +116,10 @@ def calculate_task_priority_score(df_tasks: pd.DataFrame) -> pd.DataFrame:
     # if days to deadline is 0 or less than 1 then convert to 1 to avoid division by zero
     df["days_to_deadline"] = df["days_to_deadline"].clip(lower=1)
 
+    # Map difficulty to numeric values
+    difficulty_map = {"Easy": 1, "Medium": 2, "Hard": 3}
+    df["difficulty"] = df["difficulty"].map(difficulty_map)
+
     # Convert values to numeric to calculate priority score
     df["days_to_deadline"] = pd.to_numeric(df["days_to_deadline"])
     df["difficulty"] = pd.to_numeric(df["difficulty"])

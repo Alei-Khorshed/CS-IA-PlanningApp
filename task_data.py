@@ -51,9 +51,6 @@ def display_task_form(conn : sql.Connection):
                 st.error("Title cannot be empty.")
             else:            
                 selected_subject_id = int(df_subject.loc[df_subject['title'] == subject, 'subject_id'].iloc[0])
-                #st.write(selected_subject_id)    
-                #st.write(subject)
-                #st.write(title)
 
                 # Create a DataFrame for the new record
                 data_record = [{"task_id":0,   "subject_id": selected_subject_id, "user_id": st.session_state.gCurrentUser, "title":title, "deadline":deadline, "difficulty":difficulty, "status":"PENDING", "date_completed":""}]
