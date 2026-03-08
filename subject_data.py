@@ -38,7 +38,6 @@ def display_subject_form(conn : sql.Connection):
                 st.error("Title cannot be empty.")
             else:
                 # Create a DataFrame for the new record
-                #data_record = [{"subject_id": id, "title": title}]
                 data_record = [{"subject_id": 0, "title": title}]
                 df_data = pd.DataFrame(data_record)
                 
