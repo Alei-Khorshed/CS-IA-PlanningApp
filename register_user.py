@@ -28,7 +28,7 @@ def display_user_form(conn : sql.Connection):
         username = st.text_input("User Name", key="txtUserName")
         password = st.text_input("Password", key="txtPassword", type="password")
         # Add a sumbit button
-        submit = st.form_submit_button("Add User")
+        submit = st.form_submit_button("Register User")
 
 
         # Save the new record into the database
@@ -56,7 +56,7 @@ def display_user_form(conn : sql.Connection):
                     user_row = df_user.iloc[0]                    
                     st.session_state.gCurrentUser = int(user_row['user_id'])
                     st.session_state.gCurrentUserName = username
-                    st.tex("user found")
+                    st.text("user found")
                     st.text(st.session_state.gCurrentUser)
                     #st.switch_page("home.py")
 
