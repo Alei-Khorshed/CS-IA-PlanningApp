@@ -62,8 +62,6 @@ def display_task_form(conn : sql.Connection):
                 # Commit Database to save changes
                 conn.commit() 
 
-                st.session_state.first_load = "NO"
-
                 st.rerun()  
     return
 

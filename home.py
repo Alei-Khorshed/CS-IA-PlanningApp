@@ -23,7 +23,7 @@ def load_planning_data(conn : sql.Connection):
 
     # Read information about todays GloalPoints 
     todaygoaldate = dt.now().strftime("%Y-%m-%d") 
-    df_GoalPointsToday = pd.read_sql("SELECT * FROM GoalPoints WHERE date = ?", conn, params=[todaygoaldate])
+    df_GoalPointsToday = pd.read_sql("SELECT * FROM GoalPoints WHERE user_id = ? AND date = ?", conn, params=[ st.session_state.gCurrentUser , todaygoaldate])
 
     # Check if a Goal has been set for today's date
     if not df_GoalPointsToday.empty:
@@ -59,14 +59,16 @@ def load_planning_data(conn : sql.Connection):
 
 
     # Get no of pending tasks
-    df_TasksCount = pd.read_sql("SELECT Count(task_id) as total FROM Task Where status='PENDING' ", conn)
+    df_TasksCount = pd.read_sql("SELECT Count(task_id) as total FROM Task Where status='PENDING' AND user_id = ?", conn , params=[st.session_state.gCurrentUser])
+    
 
     if not df_TasksCount.empty:
         task_row = df_TasksCount.iloc[0]
         st.session_state.gNoTasksPending = int(task_row['total'])
 
     # Get no of completed tasks based on date for today
-    df_TasksCount = pd.read_sql("SELECT Count(task_id) as total FROM Task WHERE status='COMPLETED' AND date_completed = '" + todaygoaldate + "'" ,conn) 
+    df_TasksCount = pd.read_sql("SELECT Count(task_id) as total FROM Task WHERE status='COMPLETED' AND user_id =? AND date_completed = ?",conn , params=[ st.session_state.gCurrentUser , todaygoaldate]) 
+
     if not df_TasksCount.empty:
         task_row = df_TasksCount.iloc[0]
         st.session_state.gNoTasksCompleted = int(task_row['total'])
@@ -74,7 +76,7 @@ def load_planning_data(conn : sql.Connection):
     # Calculate Progress Points by multiplying each task difficulty by 1, 2 or 3 for all completed tasks today
 
     if st.session_state.gGoalpoints!= 0:
-        df_ProgressPoints = pd.read_sql("SELECT * FROM Task WHERE status='COMPLETED' AND date_completed = '" + todaygoaldate + "'" ,conn) 
+        df_ProgressPoints = pd.read_sql("SELECT * FROM Task WHERE status='COMPLETED' AND user_id =? AND date_completed = ?", conn , params=[st.session_state.gCurrentUser , todaygoaldate]) 
 
         if not df_ProgressPoints.empty:
             difficulty_map = {"Easy": 1, "Medium": 2, "Hard": 3}
@@ -88,7 +90,7 @@ def load_planning_data(conn : sql.Connection):
     # Calculate Goal Progress Perc %
     if st.session_state.gGoalpoints!= 0:
         ProgPerc = st.session_state.gProgresspoints / st.session_state.gGoalpoints
-        st.session_state.gProgressPerc = round(st.session_state.gProgresspoints / st.session_state.gGoalpoints,2)*100
+        st.session_state.gProgressPerc = round(st.session_state.gProgresspoints / st.session_state.gGoalpoints * 100,2)
     else:
         st.session_state.gProgressPerc = 0    
     return
@@ -147,7 +149,7 @@ def display_pending_tasks(conn : sql.Connection):
     # Get todays goal date
     todaygoaldate = dt.now().strftime("%Y-%m-%d") 
     # Read and display Tasks that are pending
-    df_task = pd.read_sql("SELECT task_id, title, deadline, difficulty, status, date_completed FROM Task Where status='PENDING' ", conn)
+    df_task = pd.read_sql("SELECT task_id, title, deadline, difficulty, status, date_completed FROM Task Where status='PENDING' AND user_id = ?", conn , , params=[st.session_state.gCurrentUser])
 
     # Calculate priority score for tasks based on the number of days till deadline and difficulty 
     # Check that the pending tasks dataframe is not empty
@@ -204,8 +206,9 @@ def display_pending_tasks(conn : sql.Connection):
 # Function to display completed tasks
 def display_completed_tasks(conn : sql.Connection):
     st.markdown("## **My COMPLETED Tasks**")
+    todaygoaldate = dt.now().strftime("%Y-%m-%d") 
     # Read and display Tasks that are pending
-    df_task_completed = pd.read_sql("SELECT title, deadline, difficulty, status, date_completed FROM Task Where status='COMPLETED' ", conn)
+    df_task_completed = pd.read_sql("SELECT title, deadline, difficulty, status, date_completed FROM Task Where status='COMPLETED' AND user_id =? AND date_completed = ?", conn , params=[ st.session_state.gCurrentUser , todaygoaldate])
     st.dataframe(df_task_completed , hide_index=True)
     return
 
