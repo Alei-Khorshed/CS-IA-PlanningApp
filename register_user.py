@@ -41,6 +41,8 @@ def display_user_form(conn : sql.Connection):
             password = password.strip()
 
             if not firstname or not lastname or not username or not password:   
+                st.error("Enter all the missing form fields.")    
+            else:
                 # Create a DataFrame for the new record
                 data_record = [{"user_id":0,   "firstname": firstname, "lastname": lastname, "dateofbirth": dateofbirth, "username":username, "password":password }]
                 df_data = pd.DataFrame(data_record)
