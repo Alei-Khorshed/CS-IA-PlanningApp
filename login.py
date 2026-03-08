@@ -58,20 +58,9 @@ try:
 
 
     st.divider()
-    # Create 2 equal-width columns
-    col1, col2  = st.columns(2)
 
-  
-    with col1:
-        if st.button("Login"):
-            st.switch_page("login.py") 
-
-    with col2:
-        if st.button("Register New User"):
-            st.switch_page("register_user.py") 
-
-
- 
+    if st.button("Register New User"):
+        st.switch_page("register_user.py") 
 
 
 except Exception as err:
