@@ -65,15 +65,7 @@ st.sidebar.divider() # Adds a horizontal line
 # Set up navigation
 pg = st.navigation([home_page, goal_planning,subject_page, task_page,user_page])
 
-
-# Load the main page
-# Check if this is first load and user is not logged in
-if st.session_state.gCurrentUser == 0:
-    # Goto login page
-    login.run()
-else:
-    # Show selected sidebar page
-    pg.run()
+login.run()
 
 
 
