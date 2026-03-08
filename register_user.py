@@ -75,12 +75,7 @@ try:
     # Display the page title at the top of the page 
     st.markdown("# Register New User")
 
-    # Create DB connection
-    if "gDBConnection" not in st.session_state:
-        st.session_state.gDBConnection = get_db_connection()
 
-    # Display the user data form
-    display_user_form(st.session_state.gDBConnection)
 
 
 except Exception as err:
