@@ -8,10 +8,10 @@ if "gDBName" not in st.session_state:
     st.session_state.gDBName = "TaskDB.db"
 
 if "gCurrentUser" not in st.session_state:
-    st.session_state.gCurrentUser = 1
+    st.session_state.gCurrentUser = 0
 
 if "gCurrentUserName" not in st.session_state:
-    st.session_state.gCurrentUserName = "Alei Khorshed"
+    st.session_state.gCurrentUserName = "Guest"
 
 if "gDateFormat" not in st.session_state:
     st.session_state.gDateFormat = "DD/MM/YYYY"
@@ -63,11 +63,18 @@ st.sidebar.markdown(f"### User: **{st.session_state.gCurrentUserName}**")
 st.sidebar.divider() # Adds a horizontal line
 
 # Set up navigation
-pg = st.navigation([login, home_page, goal_planning,subject_page, task_page,user_page])
+pg = st.navigation([home_page, goal_planning,subject_page, task_page,user_page])
 
 
-# Run the selected page
-pg.run()
+# Load the main page
+# Check if this is first load and user is not logged in
+if st.session_state.gCurrentUser == 0:
+    # Goto login page
+    login.run()
+else:
+    # Show selected sidebar page
+    pg.run()
+
 
 
 
