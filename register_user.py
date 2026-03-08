@@ -35,8 +35,8 @@ def display_user_form(conn : sql.Connection):
         if submit:
 
             # Check that main input is not empty
-            firstname - firstname.strip()
-            lastname - lastname.strip()
+            firstname = firstname.strip()
+            lastname = lastname.strip()
             username = username.strip()
             password = password.strip()
 
