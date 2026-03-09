@@ -17,6 +17,14 @@ def get_db_connection() -> sql.Connection:
 
     return conn
 
+# Function to check if a user exists with given username
+def search_user(conn : sql.Connection, username):
+    df_user = pd.read_sql("SELECT * FROM user WHERE username = ?", conn, params=[username])
+    if not df_user.empty:
+       return True
+    else:
+        return False
+
 # Function to display user form 
 def display_user_form(conn : sql.Connection):
     # Read the entire table into a DataFrame
@@ -39,32 +47,43 @@ def display_user_form(conn : sql.Connection):
 
         # Save the new record into the database
         if submit:
-            # Create a DataFrame for the new record
-            data_record = [{"user_id":0,   "firstname": firstname, "lastname": lastname, "dateofbirth": dateofbirth, "username":username, "password":password }]
-            df_data = pd.DataFrame(data_record)
-            
 
-            # Create a SQL command to save the record to the database
-            cur = conn.cursor()
-            cur.executemany("INSERT INTO User VALUES(NULL,:firstname, :lastname, :dateofbirth, :username, :password)", data_record)
-            conn.commit() 
+            # Check that main input is not empty
+            firstname = firstname.strip()
+            lastname = lastname.strip()
+            username = username.strip()
+            password = password.strip()
 
-            # Find matchin user in the database
-            df_user = pd.read_sql("SELECT * FROM user WHERE username = ? AND password = ?", conn, params=[username , password])
-            if not df_user.empty:
-                # Get user_id from the database
-                user_row = df_user.iloc[0]                    
-                st.session_state.gCurrentUser = int(user_row['user_id'])
-                st.session_state.gCurrentUserName = username
-                st.switch_page("home.py")
-
+            if not firstname or not lastname or not username or not password:   
+                st.error("Enter all the missing form fields.")    
             else:
-                st.session_state.gCurrentUser = 0
-                st.session_state.gCurrentUserName = "Guest"
-                st.switch_page("home.py")           
+                # Check if user already exists in database
+                if search_user(conn,username):
+                    st.error("A user with this username already exists. Please select a different username")    
+                else:
+                    # Create a DataFrame for the new record
+                    data_record = [{"user_id":0,   "firstname": firstname, "lastname": lastname, "dateofbirth": dateofbirth, "username":username, "password":password }]
+                    df_data = pd.DataFrame(data_record)
+                    
+                    # Create a SQL command to save the record to the database
+                    cur = conn.cursor()
+                    cur.executemany("INSERT INTO User VALUES(NULL,:firstname, :lastname, :dateofbirth, :username, :password)", data_record)
+                    conn.commit() 
 
+                    # Find matchin user in the database
+                    df_user = pd.read_sql("SELECT * FROM user WHERE username = ? AND password = ?", conn, params=[username , password])
+                    if not df_user.empty:
+                        # Get user_id from the database
+                        user_row = df_user.iloc[0]                    
+                        st.session_state.gCurrentUser = int(user_row['user_id'])
+                        st.session_state.gCurrentUserName = username
+                        st.switch_page("home.py")
+                    else:
+                        st.session_state.gCurrentUser = 0
+                        st.session_state.gCurrentUserName = "Guest"
+                        st.switch_page("home.py")           
 
-            st.rerun()
+                    st.rerun()
 
     return
 
