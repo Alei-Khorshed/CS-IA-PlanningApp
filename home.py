@@ -123,7 +123,8 @@ def calculate_task_priority_score(df_tasks: pd.DataFrame) -> pd.DataFrame:
     # make a copy of the dataframe
     df = df_tasks.copy()
     # Convert deadline to date format 
-    df["deadline"] = pd.to_datetime(df["deadline"])
+    df["deadline"] = pd.to_datetime(df["deadline"]).dt.date
+
     # Get today's date
     todaygoaldate = pd.Timestamp.today()
     # Caulcate no. of days till deadline
